@@ -5,7 +5,19 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+      icon: fa-home
     - text: "CV"
       href: cv.html
+      icon: fa-book-open
     - text: "Insurance Analysis"
       href: insurance.html
+  right:
+    - href: https://github.com/Petermcc042
+      icon: fa-github
+    - href: https://twitter.com/rstudio
+      icon: fa-twitter
+output:
+  html_document:
+    theme: yeti
+    highlight: tango
+    

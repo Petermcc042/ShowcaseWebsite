@@ -11,11 +11,11 @@
 
 
 
-<title>insurance</title>
+<title>Insurance</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,8 +29,9 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -41,17 +42,101 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -241,17 +326,36 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fas fa-home"></span>
+     
+    Home
+  </a>
 </li>
 <li>
-  <a href="cv.html">CV</a>
+  <a href="cv.html">
+    <span class="fas fa-book-open"></span>
+     
+    CV
+  </a>
 </li>
 <li>
   <a href="insurance.html">Insurance Analysis</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Petermcc042">
+    <span class="fas fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/rstudio">
+    <span class="fas fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -261,7 +365,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">insurance</h1>
+<h1 class="title toc-ignore"><strong>Insurance</strong></h1>
 
 </div>
 
@@ -291,6 +395,8 @@ $(document).ready(function () {
 </div>
 <div id="database-documentation" class="section level2">
 <h2>Database Documentation</h2>
+<p>All data can be found at my Github or accessed using read.csv with the link below</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Petermcc042/MastersYearData/main/AnalysisTable.csv&quot;</span>)</span></code></pre></div>
 <div id="data-joining" class="section level3">
 <h3>Data Joining</h3>
 <p>The four Datasets given were customers, Health_Policies, Travel_Policies, and Motor_Policies. They were joined to create a combined ABT using four separate left joins in SQL. These are run through three queries named CombineTravel, CombineTravelMotor, and CombineTravelMotorHealth</p>
@@ -326,7 +432,7 @@ $(document).ready(function () {
 <div id="age-with-gender-splits" class="section level3">
 <h3>Age with Gender Splits</h3>
 <p>The gender splits are shown in the bar plots below with male as blue and female as red</p>
-<p><img src="insurance_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="travel-policy" class="section level3">
 <h3>Travel Policy</h3>
@@ -336,7 +442,7 @@ $(document).ready(function () {
 <li>This is understandable as it is likely the below 30 group that travels the most and as such will look for more insurance</li>
 <li>Again, more data would be useful in a field with number of times travelled in the last year. See additional data section for more.</li>
 </ul>
-<p><img src="insurance_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="health-policy" class="section level3">
 <h3>Health Policy</h3>
@@ -346,7 +452,7 @@ $(document).ready(function () {
 <li>This may be because people become less worried about health once they reach retirement. Or another explanation may be that it is people who are 30-50 are paying for a plan not only for themselves but their elderly relatives.</li>
 <li>This is something that additional data could shed more light on. See additional data section for more.</li>
 </ul>
-<p><img src="insurance_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="motor-policy" class="section level3">
 <h3>Motor Policy</h3>
@@ -354,14 +460,14 @@ $(document).ready(function () {
 <li>Motor policy follows an expected trend whereby there are a larger number of people that are middle aged that drive and look for protection than the other two age groups</li>
 <li>Below 30 and 50+ hover at roughly the same level of 1000 people per group</li>
 </ul>
-<p><img src="insurance_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <ul>
 <li>As we can see the largest number of claims comes from the 30-50 age group. However, the majority of these are one claim events</li>
 <li>Below-30 has a much smaller number but a higher number of repeat offenders, and the 50+ category has the only person that has made three claims</li>
 <li>This does not tell the full story however, as it is the below 30 age group that is costing the company the most money. Shown on next page</li>
 </ul>
-<p><img src="insurance_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><img src="insurance_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li>As shown above the total cost per age group is drastically different.</li>
 <li>At nearly a total of £205,000, the youngest age group is by far the most expensive of the group, with the group 30-50 costing around £133,000 despite having much more claims</li>

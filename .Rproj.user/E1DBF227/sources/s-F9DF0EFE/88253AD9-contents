@@ -33,6 +33,13 @@ For the report I primarily did the data cleaning and joining in Access using SQL
 
 ## Database Documentation
 
+All data can be found at my Github or accessed using read.csv with the link below
+
+```{r, eval=FALSE}
+read.csv("https://raw.githubusercontent.com/Petermcc042/MastersYearData/main/AnalysisTable.csv")
+```
+
+
 ### Data Joining
 
 The four Datasets given were customers, Health_Policies, Travel_Policies, and Motor_Policies. They were joined to create a combined ABT using four separate left joins in SQL. These are run through three queries named CombineTravel, CombineTravelMotor, and CombineTravelMotorHealth
