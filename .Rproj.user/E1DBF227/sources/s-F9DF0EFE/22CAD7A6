@@ -1,0 +1,32 @@
+{
+    "id": "22CAD7A6",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1625522313955.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "expression": "TravelTable",
+        "caption": "TravelTable",
+        "totalObservations": 2105,
+        "displayedObservations": 2105,
+        "variables": 33,
+        "cacheKey": "5D31662D",
+        "object": "TravelTable",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=TravelTable&cache_key=5D31662D&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2314885530818453536,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1625522313955,
+    "read_only": false,
+    "read_only_alternatives": []
+}

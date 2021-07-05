@@ -1,0 +1,32 @@
+{
+    "id": "4667B413",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1625522315376.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "expression": "MotorTable",
+        "caption": "MotorTable",
+        "totalObservations": 3357,
+        "displayedObservations": 3357,
+        "variables": 33,
+        "cacheKey": "59568212",
+        "object": "MotorTable",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=MotorTable&cache_key=59568212&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 3327647950551526958,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1625522315376,
+    "read_only": false,
+    "read_only_alternatives": []
+}
