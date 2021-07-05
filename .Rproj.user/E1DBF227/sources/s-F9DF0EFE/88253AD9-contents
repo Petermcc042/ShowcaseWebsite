@@ -12,7 +12,7 @@ AnalysisTable <- read.csv("https://raw.githubusercontent.com/Petermcc042/Masters
 
 ```
 
-Data Report
+# Data Report
 
 ## Report Overview 
 For the report I primarily did the data cleaning and joining in Access using SQL. After creating my final ABT I did some summary queries using SQL. I then took the final ABT to R where I completed some more analysis. The report is structured as follows.
