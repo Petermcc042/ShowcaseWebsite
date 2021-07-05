@@ -1,5 +1,11 @@
 ---
 title: "__My Website__"
+output:
+  html_document:
+    includes:
+      in_header:
+      - header.html
+      - hero-image.html
 ---
 
 

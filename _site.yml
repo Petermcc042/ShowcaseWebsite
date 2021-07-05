@@ -8,9 +8,10 @@ navbar:
       icon: fa-home
     - text: "CV"
       href: cv.html
-      icon: fa-book-open
+      icon: fa-address-card
     - text: "Insurance Analysis"
       href: insurance.html
+      icon: fa-book-open
   right:
     - href: https://github.com/Petermcc042
       icon: fa fa-github
