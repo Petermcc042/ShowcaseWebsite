@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>insurance</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="insurance.html">Insurance Analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">insurance</h1>
+
+</div>
+
+
+<p>Data Report</p>
+<div id="report-overview" class="section level2">
+<h2>Report Overview</h2>
+<p>For the report I primarily did the data cleaning and joining in Access using SQL. After creating my final ABT I did some summary queries using SQL. I then took the final ABT to R where I completed some more analysis. The report is structured as follows.</p>
+<ul>
+<li>Database Documentation
+<ul>
+<li>Data joining</li>
+<li>Data Quality</li>
+<li>Outliers</li>
+<li>Final Data Summary</li>
+<li>Additional Data for Future Analysis</li>
+</ul></li>
+<li>Insights Report
+<ul>
+<li>Title</li>
+<li>Preferred Channel</li>
+<li>Age</li>
+<li>Age with Gender Splits</li>
+<li>Motor Policy Claims</li>
+</ul></li>
+</ul>
+</div>
+<div id="database-documentation" class="section level2">
+<h2>Database Documentation</h2>
+<div id="data-joining" class="section level3">
+<h3>Data Joining</h3>
+<p>The four Datasets given were customers, Health_Policies, Travel_Policies, and Motor_Policies. They were joined to create a combined ABT using four separate left joins in SQL. These are run through three queries named CombineTravel, CombineTravelMotor, and CombineTravelMotorHealth</p>
+<p>Each join builds upon the ABT created previously and is built using the Customers dataset as a base. Customers has one primary key, (CustomerID), and three foreign keys, (TravelID, MotorID, HealthID), that it uses to match and join. Each new ABT is created using its corresponding foreign key. CombineTravel is joined on TravelID, CombineTravelMotor is joined on MotorID, and CombineTravelMotorHealth is joined on HealthID.</p>
+<p>A LEFT JOIN is used to preserve the number of customers in the primary data, and only match those who have policies with the company. The combined data set was called CombinedTable. After combining the tables there are the two forms of foreign key used for matching. As both are not needed, I removed the three ID columns which SQL created and left the three original ID columns. This was applied using the RemoveColumns query in SQL.</p>
+</div>
+<div id="data-quality" class="section level3">
+<h3>Data Quality</h3>
+<p>When examining the data in Access there did not appear to be any missing data for each of the policies, before or after the tables were joined. This was checked simply using a count query for some of the major fields. Some key points of the raw data are below.</p>
+<p>• Customer ID: all had a unique identifier for both themselves and their respective policies • Title: Query created in SQL to unify the naming convention • Middle Initial: Removed to reduce clutter • Gender: Query created to unify naming convention • Preferred Channel of Communication: Query created to unify naming convention</p>
+</div>
+<div id="improving-data-quality" class="section level3">
+<h3>Improving Data Quality</h3>
+<p>A point for improvement for the company would be improving the data input for simple fields. While the overall data did not have missing values which is very important, simple fields like gender, title, and Preferred Channel could be greatly improved. Whether this is at the input stage using data validation for customers or when compiling the data into the initial tables. This should lock the values to set values.</p>
+</div>
+<div id="data-manipulation" class="section level3">
+<h3>Data Manipulation</h3>
+<p>Much of the data manipulation was completed in Access using SQL. Queries were used that directly update the main ABT and as such should there be updates to the data at a later stage these queries can be ran again with the same data cleaning outcome. Fields like gender, title, preferred channel are all able to be replicated.</p>
+</div>
+<div id="outliers" class="section level3">
+<h3>Outliers</h3>
+<p>As well as the points above there were several outliers in the data. For Age there were three anomalies that were picked up after the AgeOutliers query was ran to check for any issues. This checked if individuals were outside the range of 18 – 100. Each value was fixed with separate update queries. Vanessa King, Georgina Clark, and Bilal King had ages of 180, -44, and 210, respectively. I have assumed small mistypes for each of these values and as such corrected them to 18, 44 and 21</p>
+<p>The number of dependent kids field also included a possible error. There was a value of 40 included which has been assumed to be 4 and rectified.</p>
+</div>
+<div id="final-data-summary" class="section level3">
+<h3>Final Data Summary</h3>
+<p>The table has been corrected for problems in general data quality talked about above and has been corrected for the outliers mentioned. The last update made to create the finished ABT is a column was added to group the ages into three brackets, less than 30, 30 – 50, and 50+. The query used for this called CreateAnalysisTable. The final table is called AnalysisTable. Additional Data for Future Analysis</p>
+<p>In the analysis section there were two extra points that would be useful and easy to implement in future data gathering. Both data fields could be set to a Boolean value and then used to give further insights. Firstly, the age subscription to the health plan seems unusual and I have proposed that it may be due to middle aged people paying for relative’s health care. As such a field such as receives health care with be beneficial. This could simply be set to 0 if no, and 1 if yes. This may then explain why there are significantly lower numbers in the older age not having a health policy. As well as this a value for provides health care with the same 0, 1, system could be useful. For example, instead of targeting the older generation with health care adds, you may need to target middle aged individuals who are more likely and receptive to paying for elderly relative’s healthcare. Another field that would be useful would be number of times travelled abroad in the last year. A simple integer value input could provide the company with valuable information on what individuals travel regularly without insurance and as such, should be targeted with Travel Policy.</p>
+</div>
+</div>
+<div id="insights-report" class="section level2">
+<h2>Insights Report</h2>
+<div id="age-with-gender-splits" class="section level3">
+<h3>Age with Gender Splits</h3>
+<p>The gender splits are shown in the bar plots below with male as blue and female as red</p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="travel-policy" class="section level3">
+<h3>Travel Policy</h3>
+<ul>
+<li>Clearly shown from the graph is that most customers that have the policy are aged below 30</li>
+<li>This then declines as we move up the categories</li>
+<li>This is understandable as it is likely the below 30 group that travels the most and as such will look for more insurance</li>
+<li>Again, more data would be useful in a field with number of times travelled in the last year. See additional data section for more.</li>
+</ul>
+<p><img src="insurance_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="health-policy" class="section level3">
+<h3>Health Policy</h3>
+<ul>
+<li>Again, in health policy we find a trend where it is those who are middle aged that are most worried about the policy.</li>
+<li>Surprisingly, the middle bracket dominates the 50+ age group where possibly you would expect the older generation to pull the reverse</li>
+<li>This may be because people become less worried about health once they reach retirement. Or another explanation may be that it is people who are 30-50 are paying for a plan not only for themselves but their elderly relatives.</li>
+<li>This is something that additional data could shed more light on. See additional data section for more.</li>
+</ul>
+<p><img src="insurance_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="motor-policy" class="section level3">
+<h3>Motor Policy</h3>
+<ul>
+<li>Motor policy follows an expected trend whereby there are a larger number of people that are middle aged that drive and look for protection than the other two age groups</li>
+<li>Below 30 and 50+ hover at roughly the same level of 1000 people per group</li>
+</ul>
+<p><img src="insurance_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<ul>
+<li>As we can see the largest number of claims comes from the 30-50 age group. However, the majority of these are one claim events</li>
+<li>Below-30 has a much smaller number but a higher number of repeat offenders, and the 50+ category has the only person that has made three claims</li>
+<li>This does not tell the full story however, as it is the below 30 age group that is costing the company the most money. Shown on next page</li>
+</ul>
+<p><img src="insurance_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="insurance_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ul>
+<li>As shown above the total cost per age group is drastically different.</li>
+<li>At nearly a total of £205,000, the youngest age group is by far the most expensive of the group, with the group 30-50 costing around £133,000 despite having much more claims</li>
+<li>This is highlighted clearer by the plot on the right where the average cost per head of those who have the Motor Policy is shown. The average cost of someone below 30 per claim comes in at £213 pounds. Well over double that of the next amount for 30-50-year olds at £88.</li>
+<li>Advise for the company would be to adjust pricing plans if not already done, to incorporate this information. Making the cost of the Motor insurance a lot more expensive for younger people</li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

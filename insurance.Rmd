@@ -1,0 +1,304 @@
+---
+title: "insurance"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(dplyr)
+
+AnalysisTable <- read.csv("https://raw.githubusercontent.com/Petermcc042/MastersYearData/main/AnalysisTable.csv")
+
+```
+
+Data Report
+
+## Report Overview 
+For the report I primarily did the data cleaning and joining in Access using SQL. After creating my final ABT I did some summary queries using SQL. I then took the final ABT to R where I completed some more analysis. The report is structured as follows.
+
+* Database Documentation
+  * Data joining
+  * Data Quality
+  * Outliers
+  * Final Data Summary
+  * Additional Data for Future Analysis
+  
+* Insights Report
+  * Title
+  * Preferred Channel
+  * Age 
+  * Age with Gender Splits
+  * Motor Policy Claims
+
+## Database Documentation
+
+### Data Joining
+
+The four Datasets given were customers, Health_Policies, Travel_Policies, and Motor_Policies. They were joined to create a combined ABT using four separate left joins in SQL. These are run through three queries named CombineTravel, CombineTravelMotor, and CombineTravelMotorHealth
+
+Each join builds upon the ABT created previously and is built using the Customers dataset as a base. Customers has one primary key, (CustomerID), and three foreign keys, (TravelID, MotorID, HealthID), that it uses to match and join. Each new ABT is created using its corresponding foreign key. CombineTravel is joined on TravelID, CombineTravelMotor is joined on MotorID, and CombineTravelMotorHealth is joined on HealthID. 
+
+A LEFT JOIN is used to preserve the number of customers in the primary data, and only match those who have policies with the company. The combined data set was called CombinedTable. After combining the tables there are the two forms of foreign key used for matching. As both are not needed, I removed the three ID columns which SQL created and left the three original ID columns. This was applied using the RemoveColumns query in SQL.
+
+### Data Quality
+When examining the data in Access there did not appear to be any missing data for each of the policies, before or after the tables were joined. This was checked simply using a count query for some of the major fields. Some key points of the raw data are below.
+
+•	Customer ID: all had a unique identifier for both themselves and their respective policies
+•	Title: Query created in SQL to unify the naming convention
+•	Middle Initial: Removed to reduce clutter
+•	Gender: Query created to unify naming convention
+•	Preferred Channel of Communication: Query created to unify naming convention
+
+### Improving Data Quality
+
+A point for improvement for the company would be improving the data input for simple fields. While the overall data did not have missing values which is very important, simple fields like gender, title, and Preferred Channel could be greatly improved. Whether this is at the input stage using data validation for customers or when compiling the data into the initial tables. This should lock the values to set values.
+
+### Data Manipulation
+Much of the data manipulation was completed in Access using SQL. Queries were used that directly update the main ABT and as such should there be updates to the data at a later stage these queries can be ran again with the same data cleaning outcome. Fields like gender, title, preferred channel are all able to be replicated. 
+
+### Outliers
+As well as the points above there were several outliers in the data. 
+For Age there were three anomalies that were picked up after the AgeOutliers query was ran to check for any issues. This checked if individuals were outside the range of 18 – 100. Each value was fixed with separate update queries. Vanessa King, Georgina Clark, and Bilal King had ages of 180, -44, and 210, respectively. I have assumed small mistypes for each of these values and as such corrected them to 18, 44 and 21
+
+The number of dependent kids field also included a possible error. There was a value of 40 included which has been assumed to be 4 and rectified.
+
+### Final Data Summary
+The table has been corrected for problems in general data quality talked about above and has been corrected for the outliers mentioned.
+The last update made to create the finished ABT is a column was added to group the ages into three brackets, less than 30, 30 – 50, and 50+. The query used for this called CreateAnalysisTable. The final table is called AnalysisTable.
+Additional Data for Future Analysis
+
+In the analysis section there were two extra points that would be useful and easy to implement in future data gathering. Both data fields could be set to a Boolean value and then used to give further insights. Firstly, the age subscription to the health plan seems unusual and I have proposed that it may be due to middle aged people paying for relative’s health care. As such a field such as receives health care with be beneficial. This could simply be set to 0 if no, and 1 if yes. This may then explain why there are significantly lower numbers in the older age not having a health policy. As well as this a value for provides health care with the same 0, 1, system could be useful. For example, instead of targeting the older generation with health care adds, you may need to target middle aged individuals who are more likely and receptive to paying for elderly relative’s healthcare.
+Another field that would be useful would be number of times travelled abroad in the last year. A simple integer value input could provide the company with valuable information on what individuals travel regularly without insurance and as such, should be targeted with Travel Policy.
+
+## Insights Report
+
+### Age with Gender Splits
+
+The gender splits are shown in the bar plots below with male as blue and female as red
+
+
+```{r, include=FALSE, echo=FALSE}
+names(AnalysisTable)
+class(AnalysisTable)
+AnalysisTable = data.frame(AnalysisTable)
+str(AnalysisTable)
+
+#Creating Factors for the data
+AnalysisTable$Title <- factor(AnalysisTable$Title)
+AnalysisTable$CreditCardType <- factor(AnalysisTable$CreditCardType)
+AnalysisTable$Gender <- factor(AnalysisTable$Gender)
+AnalysisTable$AgeGrouped <- factor(AnalysisTable$AgeGrouped, levels = c("Below-30", "30-50", "50+"), ordered = TRUE)
+AnalysisTable$Location <- factor(AnalysisTable$Location)
+AnalysisTable$PrefChannel <- factor(AnalysisTable$PrefChannel)
+AnalysisTable$TravelType <- factor(AnalysisTable$TravelType)
+AnalysisTable$MotorType <- factor(AnalysisTable$MotorType)
+AnalysisTable$MotorType <- factor(AnalysisTable$MotorType)
+AnalysisTable$numclaims <- factor(AnalysisTable$numclaims)
+
+
+
+#different age groups and gender breakdown
+table(AnalysisTable$Gender,AnalysisTable$AgeGrouped)
+barplot(table(AnalysisTable$Gender,AnalysisTable$AgeGrouped))
+
+###########Create tables for each individual policy##########################
+#create table for Travel Policy only
+TravelTable <- filter(AnalysisTable, AnalysisTable$Travel_Policy_travelID > 0)
+View(TravelTable)
+str(TravelTable)
+
+#create table for Health Policy only
+HealthTable <- filter(AnalysisTable, AnalysisTable$Health_Policy_healthID > 0)
+View(HealthTable)
+str(HealthTable)
+
+#create table for Motor Policy only
+MotorTable <- filter(AnalysisTable, AnalysisTable$Motor_Policy_motorID > 0)
+View(MotorTable)
+str(MotorTable)
+```
+
+
+
+```{r, echo=FALSE}
+#################Age Grouped Gender Bar Plots#####################
+#Travel Policy Bar plot#
+
+#different age groups and gender breakdown
+#table(TravelTable$Gender,TravelTable$AgeGrouped)
+barplot(height =  table(TravelTable$Gender,TravelTable$AgeGrouped),
+        names.arg = c("Below-30", "30-50", "50+"),
+        col = c("Red", "Blue"),
+        main = "Travel Age Groups with Gender Splits",
+        cex.main = 1.5,
+        cex.axis = 1,
+        cex.names = 1,         
+        ylim = c(0, 1700))
+
+```
+
+### Travel Policy
+
+* Clearly shown from the graph is that most customers that have the policy are aged below 30
+* This then declines as we move up the categories
+* This is understandable as it is likely the below 30 group that travels the most and as such will look for more insurance
+* Again, more data would be useful in a field with number of times travelled in the last year. See additional data section for more.
+
+
+
+```{r, echo=FALSE}
+
+#Health Policy Bar Plot#
+
+#different age groups and gender breakdown
+#table(HealthTable$Gender,HealthTable$AgeGrouped)
+barplot(table(HealthTable$Gender,HealthTable$AgeGrouped),
+        names.arg = c("Below-30", "30-50", "50+"),
+        col = c("Red", "Blue"),
+        main = "Health Age Groups with Gender Splits",
+        cex.main = 1.5,
+        cex.axis = 1,
+        cex.names = 1,   
+        ylim = c(0, 1700))
+
+```
+
+### Health Policy
+
+* Again, in health policy we find a trend where it is those who are middle aged that are most worried about the policy.
+*	Surprisingly, the middle bracket dominates the 50+ age group where possibly you would expect the older generation to pull the reverse
+*	This may be because people become less worried about health once they reach retirement. Or another explanation may be that it is people who are 30-50 are paying for a plan not only for themselves but their elderly relatives.
+*	This is something that additional data could shed more light on. See additional data section for more.
+
+
+
+```{r, echo=FALSE}
+
+#Motor Policy Bar Plot#
+
+#different age groups and gender breakdown
+#table(MotorTable$Gender,MotorTable$AgeGrouped)
+barplot(table(MotorTable$Gender,MotorTable$AgeGrouped),
+        names.arg = c("Below-30", "30-50", "50+"),
+        col = c("Red", "Blue"),
+        main = "Motor Age Groups with Gender Splits",
+        legend.text = c("female", "male"),
+        cex.main = 1.5,
+        cex.axis = 1,
+        cex.names = 1,  
+        ylim = c(0, 1700))
+
+```
+
+### Motor Policy
+
+*	Motor policy follows an expected trend whereby there are a larger number of people that are middle aged that drive and look for protection than the other two age groups
+*	Below 30 and 50+ hover at roughly the same level of 1000 people per group
+
+
+```{r, echo=FALSE}
+
+#################Age Grouped Claims Analysis Bar plots#####################
+
+#create a column to show actual claims
+AnalysisTable$TotalClaims <- droplevels(AnalysisTable$numclaims, c("0", ""))
+
+
+#create total claims per age group table
+#table(AnalysisTable$TotalClaims,AnalysisTable$AgeGrouped)
+#ftable(AnalysisTable$TotalClaims,AnalysisTable$AgeGrouped)
+
+#plot total claims bar plot
+barplot(ftable(AnalysisTable$TotalClaims,AnalysisTable$AgeGrouped),
+        names.arg = c("Below-30", "30-50", "50+"),
+        col = c("grey", "blue", "green"),
+        legend.text = c("One Claim", "Two Claims", "Three Claims"),
+        main = "Total Claims in Age Groups",
+        cex.main = 1.5,
+        cex.axis = 1,
+        cex.names = 1,        
+        ylim = c(0, 100))
+
+```
+
+*	As we can see the largest number of claims comes from the 30-50 age group. However, the majority of these are one claim events
+*	Below-30 has a much smaller number but a higher number of repeat offenders, and the 50+ category has the only person that has made three claims
+*	This does not tell the full story however, as it is the below 30 age group that is costing the company the most money. Shown on next page
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+#plot total cost per age group
+
+#create summary totals
+Below30TotalPaid <- AnalysisTable %>%
+  summarise(sumTotal = sum(AnalysisTable$claimcst0[AnalysisTable$AgeGrouped=="Below-30"], na.rm = TRUE))
+
+MiddleGroupTotalPaid <- AnalysisTable %>%
+  summarise(sumTotal = sum(AnalysisTable$claimcst0[AnalysisTable$AgeGrouped=="30-50"], na.rm = TRUE))
+
+FiftyPlusTotalPaid <- AnalysisTable %>%
+  summarise(sumTotal = sum(AnalysisTable$claimcst0[AnalysisTable$AgeGrouped=="50+"], na.rm = TRUE))
+
+#create totals table
+TotalsTable1 <- full_join(Below30TotalPaid, MiddleGroupTotalPaid,
+                         by = NULL,
+                         copy = FALSE)
+TotalsTable <- full_join(TotalsTable1, FiftyPlusTotalPaid,
+                          by = NULL,
+                          copy = FALSE)
+
+#create a bar plot showing the total amounts
+barplot(TotalsTable$sumTotal,
+        names.arg = c("Below-30", "30-50", "50+"),
+        col = "blue",
+        main = "Total Cost per Age Group",
+        cex.main = 1.5,
+        cex.axis = 1,
+        cex.names = 1,         
+        ylim = c(0, 250000))
+```
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+#create data for per head totals of those in Motor Policy
+CountAgeGroups <- MotorTable %>% count(AgeGrouped)
+#View(CountAgeGroups)
+
+
+Below30TotalPerHead <- Below30TotalPaid/CountAgeGroups[1,2]
+MiddleGroupTotalPerHead <- MiddleGroupTotalPaid/CountAgeGroups[2,2]
+FiftyPlusTotalPerHead <- FiftyPlusTotalPaid/CountAgeGroups[3,2]
+
+#create per head table
+Perhead1 <- full_join(Below30TotalPerHead, MiddleGroupTotalPerHead,
+                         by = NULL,
+                         copy = FALSE)
+PerHeadtable <- full_join(Perhead1, FiftyPlusTotalPerHead,
+                          by = NULL,
+                          copy = FALSE)
+
+#create a bar plot showing the per head amounts
+barplot(PerHeadtable$sumTotal,
+        names.arg = c("Below-30", "30-50", "50+"),
+        col = "blue",
+        main = "Average Cost per Head",
+        cex.main = 1.5,
+        cex.axis = 1,
+        cex.names = 1,          
+        ylim = c(0, 250))
+
+
+```
+
+
+* As shown above the total cost per age group is drastically different.
+*	At nearly a total of £205,000, the youngest age group is by far the most expensive of the group, with the group 30-50 costing around £133,000 despite having much more claims
+*	This is highlighted clearer by the plot on the right where the average cost per head of those who have the Motor Policy is shown. The average cost of someone below 30 per claim comes in at £213 pounds. Well over double that of the next amount for 30-50-year olds at £88. 
+*	Advise for the company would be to adjust pricing plans if not already done, to incorporate this information. Making the cost of the Motor insurance a lot more expensive for younger people
+
+
+
