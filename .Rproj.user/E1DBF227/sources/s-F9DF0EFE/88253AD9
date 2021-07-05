@@ -3,7 +3,7 @@
     "path": "~/Webpages/Showcase/ShowcaseWebsite/insurance.Rmd",
     "project_path": "insurance.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3636848461",
     "contents": "",
     "dirty": false,
     "created": 1625521935256.0,
@@ -11,15 +11,15 @@
     "relative_order": 4,
     "properties": {
         "tempName": "Untitled1",
-        "cursorPosition": "15,0",
+        "cursorPosition": "15,169",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1625525108,
+    "lastKnownWriteTime": 1625527665,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1625525108876,
+    "last_content_update": 1625527665747,
     "read_only": false,
     "read_only_alternatives": []
 }

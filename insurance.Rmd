@@ -12,6 +12,9 @@ AnalysisTable <- read.csv("https://raw.githubusercontent.com/Petermcc042/Masters
 
 ```
 
+# Overview
+This was one of the final projects in my first term of my masters degree. In this project I use SQL and R to work with three seperate data sets to produce some insights.
+
 # Data Report
 
 ## Report Overview 

@@ -2,6 +2,9 @@
 title: "__Focus Features of Churn Modelling in Banking__"
 ---
 
+# Overview
+This research was one of my final projects in the second term of my masters degree. It is the style of an academic research paper and in it I try find the optimal model for predicting customer churn in the banking industry. I then go on to show the factors that are most optimal in predicting customer churn and make suggestions for which a company can implement.
+
 
 # Abstract
 Churn modelling has become a vital part of Customer Relationship Management (CRM). At it’s core churn modelling is used to predict those customers who are most likely to leave a business. From this point companies can work on caring programmes that can help to stabilise or incentivise churn customers to stay. The topic has seen a rapid increase in accuracy due to the inclusion of Machine Learning (ML) algorithms. Especially in binary classification problems such as the one analysed in this paper, ML can produce an accurate result. This paper looks at churn in the banking sector.
