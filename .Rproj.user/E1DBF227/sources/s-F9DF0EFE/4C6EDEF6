@@ -12,14 +12,14 @@
     "properties": {
         "expression": "HealthTable",
         "caption": "HealthTable",
-        "totalObservations": 2538,
-        "displayedObservations": 2538,
-        "variables": 33,
-        "cacheKey": "5284E6F9",
+        "totalObservations": "2538",
+        "displayedObservations": "2538",
+        "variables": "33",
+        "cacheKey": "A8CF45DA",
         "object": "HealthTable",
         "environment": "",
-        "contentUrl": "grid_resource/gridviewer.html?env=&obj=HealthTable&cache_key=5284E6F9&max_cols=50",
-        "preview": 0
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=HealthTable&cache_key=A8CF45DA&max_cols=50",
+        "preview": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 2314885530818453536,

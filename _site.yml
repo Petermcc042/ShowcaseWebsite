@@ -5,7 +5,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+    - text: "CV"
+      href: cv.html
     - text: "Insurance Analysis"
       href: insurance.html

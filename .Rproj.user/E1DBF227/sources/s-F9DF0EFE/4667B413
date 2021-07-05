@@ -12,14 +12,14 @@
     "properties": {
         "expression": "MotorTable",
         "caption": "MotorTable",
-        "totalObservations": 3357,
-        "displayedObservations": 3357,
-        "variables": 33,
-        "cacheKey": "59568212",
+        "totalObservations": "3357",
+        "displayedObservations": "3357",
+        "variables": "33",
+        "cacheKey": "5993B76D",
         "object": "MotorTable",
         "environment": "",
-        "contentUrl": "grid_resource/gridviewer.html?env=&obj=MotorTable&cache_key=59568212&max_cols=50",
-        "preview": 0
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=MotorTable&cache_key=5993B76D&max_cols=50",
+        "preview": "0"
     },
     "folds": "",
     "lastKnownWriteTime": 3327647950551526958,

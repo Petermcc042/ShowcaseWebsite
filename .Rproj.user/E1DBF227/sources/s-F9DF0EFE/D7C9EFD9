@@ -3,22 +3,22 @@
     "path": "~/Webpages/Showcase/ShowcaseWebsite/_site.yml",
     "project_path": "_site.yml",
     "type": "yaml",
-    "hash": "1668896018",
+    "hash": "2790095356",
     "contents": "",
     "dirty": false,
     "created": 1625521032087.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
-        "cursorPosition": "10,26",
+        "cursorPosition": "7,15",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1625521924,
+    "lastKnownWriteTime": 1625522637,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1625521924563,
+    "last_content_update": 1625522637174,
     "read_only": false,
     "read_only_alternatives": []
 }
