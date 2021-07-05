@@ -14,10 +14,15 @@ navbar:
   right:
     - href: https://github.com/Petermcc042
       icon: fa fa-github
-    - href: https://twitter.com/rstudio
-      icon: fa fa-twitter
+    - href: https://www.linkedin.com/in/petermcclintock/
+      icon: fa fa-linkedin
+    - href: https://www.instagram.com/pedromcc17/
+      icon: fa fa-instagram
 output:
   html_document:
+    includes:
+      in_header: header.html
     theme: yeti
     highlight: tango
+    css: style.css
     

@@ -1,7 +1,12 @@
 ---
-title: "__My Website__"
+title: "__Home__"
+output:
+  html_document:
+    includes:
+      in_header:
+      - header.html
+      - hero-image.html
 ---
-
 
 ## About
 
@@ -11,3 +16,10 @@ I have strong Excel skills from my time in industry at Mercer working as a data 
 
 In report generation, all the projects that I worked on were completed through R Markdown. Through this data visualisation and a professional look were the goal. The reports produced were a mixture of pdf, word documents and html files. Each with incorporated graphs and tables which were easily reproducible in the event of changing data. As an extension of this outside the course I have created this website using R markdown and the reports are included with the source code.
 
+
+
+
+## Contact details
+email: pmcclintock03@qub.ac.uk
+LinkedIn: https://www.linkedin.com/in/petermcclintock/
+github
