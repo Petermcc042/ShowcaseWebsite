@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Focus Features of Churn Modelling in Banking</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="glasses.ico"/>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fas fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="cv.html">
+    <span class="fas fa-address-card"></span>
+     
+    CV
+  </a>
+</li>
+<li>
+  <a href="insurance.html">
+    <span class="fas fa-book-open"></span>
+     
+    Insurance Analysis
+  </a>
+</li>
+<li>
+  <a href="churn.html">
+    <span class="fas fa-book-open"></span>
+     
+    Churn Analysis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/Petermcc042">
+    <span class="fa fa fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/petermcclintock/">
+    <span class="fa fa fa fa-linkedin"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.instagram.com/pedromcc17/">
+    <span class="fa fa fa fa-instagram"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore"><strong>Focus Features of Churn Modelling in Banking</strong></h1>
+
+</div>
+
+
+<div id="abstract" class="section level1">
+<h1>Abstract</h1>
+<p>Churn modelling has become a vital part of Customer Relationship Management (CRM). At it’s core churn modelling is used to predict those customers who are most likely to leave a business. From this point companies can work on caring programmes that can help to stabilise or incentivise churn customers to stay. The topic has seen a rapid increase in accuracy due to the inclusion of Machine Learning (ML) algorithms. Especially in binary classification problems such as the one analysed in this paper, ML can produce an accurate result. This paper looks at churn in the banking sector.</p>
+</div>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>Customer churn is the act of customers to stop doing business with a company in a given period. It is becoming an issue particularly in service-based industries and as a result a major focus for any business that works in such a highly competitive sector. Banks provide numerous services through multiple different products, like ATM’s, debit and credit cards, and internet banking, etc. As services like banking move online, customers will only increase scrutiny over products as more and more information is available. This in turn will only further the likelihood of customer churn as the option that maximises utility for customers will be more accessible. This maximisation of utility could depend on many factors, such as interest rate, customer interaction, overdraft limits, age specific products, etc, each of which could be a potential reason for a customer to leave the business. Due to these factors, there lies opportunity in developing a model which can predict customers that are likely to churn based on their available data. Secondly, it would be highly beneficial to identify the most important factors that contribute to customer churn.</p>
+<p>This leads to the main questions asked by this paper.</p>
+<ol style="list-style-type: decimal">
+<li>What factors should commercial banks focus on to stop customer churn?</li>
+</ol>
+<p>Hence this paper includes a basic evaluation of several models to find the optimal one. From this the features are analysed to show what the model has identified as most significant. The paper does not give a comprehensive list of the most important factors that affect banks. As well as this the study will focus only on commercial banks with the aim of observing the trends in the general population.</p>
+<p>From papers as early as Bolton (1998), CRM importance has been studied. In his paper Bolton proposes that the length of time a customer has been with a service provider is one of the most important factors in keeping a good relationship. This duration estimation model is based on a customer’s perceived future utility weighted against the cost of ending the current relationship. He concludes by saying customers with longer tenure with a business perceive future costs by less.</p>
+<p>As time has progressed and model complexity has grown the emergence of classification trees benefited the field of churn modelling. Neslin et al. (2006) in their comparative study of models and the different factors that affect such models find that in general trees and logistic regression are robust in classification problems to techniques used in pre-processing. For example, in reduced feature data sets and in highly subsampled data sets, decision trees, random forests and logistic regressions prove to still have a high level of sensitivity and specificity. They also find that in reduced feature sets, specificity is greatly improved. One area that they talk about for future research is in variable selection methods to help data reduction.</p>
+<p>Improving upon the analysis of individual models, ensemble methods can produce greater levels of predictive ability. Kumar and Ravi (2008) propose an ensemble method with majority voting, incorporating multi-layer perceptron, logistic regression, decision trees, random forest, and a support vector machine to create an accurate estimation of credit card churn predictions. They like Neslin et al. (2006), find that using subsampling methods, in this case SMOTE, provide greater accuracy in predictions on unseen data. As well as this model improvement with cross validation also helps to add to the accuracy of their estimates.</p>
+<p>Recent studies have tried to predefine categories from which models can be built upon. Around this time the introduction and practical implementation of boosting models becomes apparent. Lu et al. (2012) attempt to help with model prediction through clustering customers into low and high-risk churn groups, whereby the churn risk is three times higher in one cluster.</p>
+<p>Another popular method for analysis of data is the use of deep learning models such as neural nets (Agrwal et al. 2017). Benefits of using neural nets is the integrated feature elimination aspect that means that irrelevant features do not typically impact the model as it would in other algorithms.</p>
+<p>In many of the paper evaluations of a range of models, it is found that boosting models typically leads to higher levels of accuracy or precision based on the metric scrutinised. For example, using AdaBoost in a range of models Vafeiadis et al. (2015) found that they could improve accuracy and the F measure in decision tree and support vector machine models. Boosting models appear to be growing in popularity with uptake on machine learning sites such as kaggle.com.</p>
+<p>From this point in time models appear to be situational and picked based both on author preference as well as predictive power. For example, Keramati et al. (2016) return to a familiar decision tree model to present their findings.</p>
+<p>This paper tries to build upon the work of the papers detailed and include each aspect of improvement. As such the final model used in prediction is a gradient boosted model which in testing provided the best predictive power. Subsampling plays a key part in several initial papers and as such it is included, as well as feature selection, which was a growth point for Neslin et al. (2006), and so is included. Finally, to try and encompass a fair selection of models that are currently used we run an initial test of several to decide which to move forward with.</p>
+<p>The sections follow as a methodology section which lays out the data processing element subsection followed by a model selection and tuning section. Section 3 lays out the results and interpretation of the data in the business context. The paper is closed with a summary of the results and possible future research suggestions in section 4</p>
+</div>
+<div id="methodology" class="section level1">
+<h1>Methodology</h1>
+<p>This section is split into two sections which outline the analysis conducted. First is the data section where all information on the predictors is detailed.</p>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>The data obtained is accessed from Kaggle.com and represents typical data customer information for a bank. The datasets outcome variable, Exited, shows whether the customer remained with the bank or left, and this was converted to a factor variable with levels, Stay (0) and Leave (1). As would be expected in churn results, the dependent variable shows an uneven split in the data with 79.6% of customers staying at the bank with 20.4% leaving. When evaluating models and performance results this will be kept in mind. The data has ten thousand observations with thirteen features which are a mix of categorical and numerical values.</p>
+<p>The predictor variables show some insights into likelihood of churn. Below is a table detailing the descriptive statistics of the included non-dummy variable predictors.</p>
+<p><img src="churn_stats.PNG" /></p>
+<p>The data showed no immediate quality issues, for example an illogical salary or age, and so no values have been manipulated. As well as this, oulier or “Anomaly” results have not been excluded following from the data as they are believed to be more likely a systematic pattern (Gelman, Hill, &amp; Vehtari, 2020). When looking at box plots, balance, credit score, estimated salary, credit card, number of products and tenure all show no indication on changing levels of churn. However, the other variables do show variance. The average age of those who leave tends to be higher and if a customer is deemed to be an inactive member, they are more likely to churn. Finally, female customers are more likely to leave.</p>
+<p>The predictors show no signs of lack of unique variables in analysis, (1. Max Kuhn, 2019) and there is virtually no correlation in the data.</p>
+<p>For testing, the data is split into training and validation sets with an 80:20 split respectively. After the split, the outcome variables class distribution remained at 79.6% and 20.4% in both samples due to use of the createdatapartition() function in the caret package preserving the distribution, (2. Max Kuhn, 2019).</p>
+<p>Finally, in the data cleaning to aid the linear discriminant model the data is standardised. This follows the equation below whereby each data point results with a zero mean (<span class="math inline">\(\mu\)</span>) and unit variance (<span class="math inline">\(\sigma\)</span>). The formula for standardisation is as follows <span class="math inline">\(y = ( x - \mu) / \sigma\)</span>.</p>
+</div>
+<div id="feature-engineering" class="section level2">
+<h2>Feature Engineering</h2>
+<p>The first step in processing is creating dummy variables for the binary variables which include, gender, HasCrCard, IsActiveMember and Location. For location, only three countries are specified and each are given an individual dummy variable. To evaluate performance of the features, recursive feature elimination is employed to try and identify an optimal number of variables from our data set. Each variable is ranked based on the variable’s importance to a model and at each iteration of feature selection the best ranking predictors are retained to measure the next model’s performance (3. Max Kuhn, 2019). Using the rfe() package in R, the variables are evaluated on a random forest model and to reduce the impact of “selection bias” talked about in Ambroise and McLachlan (2002), 5 fold cross validation is used. The summary of the variables additional accuracy is shown below.</p>
+<p><img src="cvvariables.PNG" /></p>
+<p>Figure 1 shows that after 6 variables the additional accuracy gained is minimal. As well as this, due to the random selection-based nature of cross validation, running tests repeatedly we find variance in the optimal number of variables ranging from 6-12. As such, we cannot accurately identify the optimal number consistently and so it is selected as the minimum of 6. With the top 4 variables shown below.This reduced feature set is included as a separate model in the selection testing.</p>
+</div>
+<div id="model-selection" class="section level2">
+<h2>Model Selection</h2>
+<p>In total nine models are evaluated with the ranking metric being area under the receiver operating characteristic (ROC) curve. The included models are</p>
+<ul>
+<li>Linear Discriminant Analysis</li>
+<li>CART</li>
+<li>KNN</li>
+<li>SVM</li>
+<li>Decision Tree</li>
+<li>Random Forest</li>
+<li>Neural Net</li>
+<li>Gradient Boosted (all features used)</li>
+<li>Gradient Boosted (six features)</li>
+</ul>
+<p>Figure 2. shows the models ranked on AUC and shows their sensitivity and specificity.</p>
+<p><img src="modelselection.PNG" /></p>
+<p>As is shown in figure 2, the gradient boosted model (gbm) initially has the highest AUC and due to this we choose it for further analysis.</p>
+<p>Boosting as an origin works on the idea of creating multiple inaccurate rules of classification and combining them to create an accurate set of rules for prediction. The exact model used is the AdaBoost algorithm introduced by Freund and Schapire (1999) and the idea of the model is iterative learning through adding weak classifiers to create a much stronger classifier. Each classifier is weighted based on its additional accuracy (Lu et al. 2012). As such the reduced feature version only serves as a negative due to the inbuilt variable selection process of the gbm model</p>
+<p>One potential problem that is identified in figure 3 is the contrast between sensitivity and specificity. Stemming from a medical origin both words are similar. Sensitivity is the probability of predicting disease correctly, given that the true state is has disease. Specificity is the probability of predicting the absence of disease correctly given that the true state is does not have disease. In the above case sensitivity looks at the probability that the customer stays. Looking at the gradient boosted model there is a large value of … which means that the model predicts … percent of the correct values. However, it has a much lower value of specificity In all of the models this is low. This is assumed to be due to the class imbalances talked about in section 3.1.</p>
+<p><img src="subsampling.PNG" /></p>
+<p>To counteract the class imbalance, three subsampling methods were evaluated. Ling and Li (1998) use up-sampling to reduce the impact, whereby the minority class is sampled with replacement bringing the number of observations up to approximately the same number as the majority class. In the data this results in a class split of 6371 for both classes. The second subsampling method used is down-sampling, where a random selection of the majority class is sampled to match the percentage of the minority class. The “leave” value in the data only makes up 20.4% of the data and as such this is matched in the “stay” values. This generates the number of observations for each individual class as 1630. The final method evaluated is a hybrid method that both down sample and generate new values for the minority class. This paper uses the ROSE method from Menardi and Torelli (2010), which attempts to balance the classes. This method results with 4045 observations for stay and 3956 for leave.</p>
+<p>The different distributions are then used to build separate models and we can see the results above. When up-sampling is used a large improvement in specificity is observed while sensitivity falls. This does lead to an overall increase in ROC, however, possibly due to the data both in the training and validation sets having the same class distribution, the up-sampled model performs worse in testing. This is because of the lower sensitivity probability. As such, we continue with the initial gbm model as it has been the most consistent. For tests where the class distribution is not the same in both data sets or unknown, the up-sampled model would be explored for tuning.</p>
+</div>
+<div id="model-tuning" class="section level2">
+<h2>Model Tuning</h2>
+<p>For model tuning the gbm model has four hyperparameters. Interaction depth, number of trees, shrinkage, and minimum number of observations in a node. Interaction depth sets the highest level of variable interaction allowed while training. The number of trees is simply the number of iterations of the model. Shrinkage is also known as the learning rate and is used for shrinking the impact of each additional fitted tree. It effectively is a penalising measure for the importance of each consecutive iteration and typically the lower the value used the better OOB performance achieved (Ridgeway 2007). For each of the talked about parameters a range of values was evaluated. Interaction depth was evaluated for odd values from 1 to 9. The number of trees was evaluated from 100 to 3000 in intervals of 100. Shrinkage and the observation value were set permanently at 0.1 and 20 respectively. The results of this are shown below.</p>
+<p><img src="roccv.PNG" /></p>
+<p>To clarify the results, the best model tuning values obtained were a tree number of 100, and interaction depth of 5. This is the model used in the results.</p>
+</div>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>The table below shows the confusion matrix for the final model talked about in section 2.3, as well as some accuracy statistics.</p>
+<p><img src="confusionmatrix.PNG" /></p>
+<p>The gbm model shows high sensitivity but lacks in specificity. This means that from the data the ability to correctly predict true positive values is high while the probability of predicting true negative values is much lower. In relation to customer churn, it means that the model is much better at predicting that a customer will stay over a customer that will leave. The next evaluation metrics discussed are precision, recall and the F-measure. Precision is the proportion of the predicted positive classes that are correct. Recall is the proportion of the predicted positive classes that were correctly identified. Finally, as neither statistic alone is solid enough evidence the F measure combines both precision and recall into one value, whereby a value closer to one implies a better combined precision and recall is achieved, (Fawcett 2006). As is shown in figure 6, both the precision and recall values are high and achieve a F measure of 0.92 meaning the overall ability to predict that the customer stays is accurate and precision means that we hit these results often. An overall accuracy of 0.86 may seem good initially however, as Galar et al. (2011) talk about accuracy in the context of severe class imbalance can be misleading. It does not distinguish between the correct number identified in both classes. This is reflected in the kappa value of 0.52.</p>
+<p>Regardless of the imbalance for unseen data the gbm model does provide some skill in prediction. With an ROC of 0.86 there is a large proportion of correct estimations.</p>
+<p>As is shown above the final model provides a reasonable set of predictions for the data set. It can somewhat accurately identify results and from this we can determine using the gbm models built in importance index the most important variables identified. These are shown below.</p>
+<p><img src="importancefactors.PNG" /></p>
+<p>As is clear from the importance index there are two main features which play the main role in prediction, age, and the number of products. Variable importance is determined by calculating the relative importance of each variable. This is calculated by how much the mean squared error over all trees was improved or decreased because of the choice of the variable at the split. This means in the figure 6 above age and the number of products owned proved to be the two most important variables reliably over multiple iterations.</p>
+<p>In relation to literature Keramati et al. (2016) also find that in their results that age is important in deciding whether customers will churn or not. In a similar vein number of transactions is a key feature in the model which arguably mirrors number of products in our model. However, their main feature was the total amount of transaction value in dollars used in online banking. As well as this they find that tenure is important while in our results it is barely significant.</p>
+<p>Moving forward to answer the initial research question, the factors that banks should primarily focus on are evident from figure 6. Clearly if age and the number of products used in the bank are the two main reasons for customers not churning. As such two possible recommendations could be the implementation of age specific products that could help reduce churn at relevant age groups. Secondly, the increase of products. This could possibly be implemented in the form of online banking and the increase additional products such as balance and spending insights.</p>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>This paper attempted to through a highly predictive model provide an insight into the main features that affect customer churn. From the gradient boosted model used it can be said that age and the number of products that customers have greatly affect the chances of whether they will churn or not. As a suggestion then based on the limited data used these two values should be taken for further analysis. The paper tries to incorporate as many methods as possible from data manipulation through to prediction that are currently being used in literature. However, it is found that some of the processes such as subsampling and feature selection provide little to no benefit in the gradient boosted model combined with the data imbalances.</p>
+<p>In a business sense based on the data we suggest that the main features that banks should focus on are age and number of products. This in turn should help to reduce the level of customer churn as these are the two main features identified in succesfully predicting a customer stays with the bank.</p>
+<p>A limitation of the study comes in the form of limited data. As talked about in section 3 Keramati et al. (2016) find that other banking features are the main factors affecting churn. However, the data used in this study has limited banking features. As such, future research should look at a wider range of banking products to see if specific products contribute more. As well as this while several models were evaluated initially only one was taken further for tuning. Other models such as a neural net or random forest may have ended with more accurate results depending on tuning. As such deeper dives into these individual models should be explored in future papers.</p>
+</div>
+<div id="appendix" class="section level1">
+<h1>Appendix</h1>
+<p>Link to csv download for r : <a href="https://raw.githubusercontent.com/Petermcc042/MastersYearData/main/indices_m.csv" class="uri">https://raw.githubusercontent.com/Petermcc042/MastersYearData/main/indices_m.csv</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#For pdf knit</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(bookdown)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#for models</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(caret)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#for ROC curve</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">library</span>(MLeval)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#for correlation</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">library</span>(corrplot)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#for data analysis</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">library</span>(tidyverse) </span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#for tables</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="kw">library</span>(kableExtra)</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#for variable importance plot</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="kw">library</span>(gbm)</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">#for subsampling</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="kw">library</span>(ROSE)</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#acquire data </span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="st">                 Petermcc042/MastersYearData/main/Churn_Modelling.csv&quot;</span>)</span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co">#remove variables and factor others</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a>data &lt;-<span class="st"> </span>data[,<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)]</span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>data<span class="op">$</span>Exited &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>Exited, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb1-27"><a href="#cb1-27"></a>                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Stay&quot;</span>, <span class="st">&quot;Leave&quot;</span>))</span>
+<span id="cb1-28"><a href="#cb1-28"></a>data<span class="op">$</span>Gender &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>Gender)</span>
+<span id="cb1-29"><a href="#cb1-29"></a>data<span class="op">$</span>HasCrCard &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>HasCrCard, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb1-30"><a href="#cb1-30"></a>                         <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;no&quot;</span>,<span class="st">&quot;yes&quot;</span>))</span>
+<span id="cb1-31"><a href="#cb1-31"></a>data<span class="op">$</span>IsActiveMember &lt;-<span class="st"> </span><span class="kw">factor</span>(data<span class="op">$</span>IsActiveMember, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb1-32"><a href="#cb1-32"></a>                              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;NonActive&quot;</span>,<span class="st">&quot;Active&quot;</span>))</span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a></span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="co"># summarize the class distribution</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(data<span class="op">$</span>Exited))</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a>statstable &lt;-<span class="st"> </span><span class="kw">summary</span>(data)</span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="co"># Relationship with Churn and Numerical variables</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>data <span class="op">%&gt;%</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a><span class="st">  </span>{<span class="kw">bind_cols</span>(<span class="kw">select_if</span>(., is.numeric),</span>
+<span id="cb1-44"><a href="#cb1-44"></a>             <span class="kw">select_at</span>(., <span class="st">&quot;Exited&quot;</span>))</span>
+<span id="cb1-45"><a href="#cb1-45"></a>  } <span class="op">%&gt;%</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="st">  </span><span class="kw">gather</span>(<span class="op">-</span>Exited, <span class="dt">key =</span> <span class="st">&quot;var&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;value&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Exited, <span class="dt">y =</span> value, <span class="dt">fill =</span> Exited)) <span class="op">+</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>var, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)  <span class="op">+</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Numerical Variable Relationship with Churn&quot;</span>)</span>
+<span id="cb1-52"><a href="#cb1-52"></a></span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="co"># Distribution by Credit Card</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a>data <span class="op">%&gt;%</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">HasCrCard =</span> <span class="kw">factor</span>(HasCrCard,</span>
+<span id="cb1-57"><a href="#cb1-57"></a>                            <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;No Card&quot;</span>, <span class="st">&quot;Has Card&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="st">  </span><span class="kw">group_by</span>(HasCrCard, Exited) <span class="op">%&gt;%</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> HasCrCard, <span class="dt">y =</span> n, <span class="dt">fill =</span> Exited)) <span class="op">+</span></span>
+<span id="cb1-61"><a href="#cb1-61"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="op">+</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent) <span class="op">+</span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">x =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-64"><a href="#cb1-64"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="op">+</span></span>
+<span id="cb1-65"><a href="#cb1-65"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Credit Card&quot;</span>)</span>
+<span id="cb1-66"><a href="#cb1-66"></a>          </span>
+<span id="cb1-67"><a href="#cb1-67"></a>          </span>
+<span id="cb1-68"><a href="#cb1-68"></a><span class="co"># Distribution by isactivemember</span></span>
+<span id="cb1-69"><a href="#cb1-69"></a>data <span class="op">%&gt;%</span></span>
+<span id="cb1-70"><a href="#cb1-70"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">IsActiveMember =</span> <span class="kw">factor</span>(IsActiveMember,</span>
+<span id="cb1-71"><a href="#cb1-71"></a>                                 <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Inactive&quot;</span>, <span class="st">&quot;Active&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb1-72"><a href="#cb1-72"></a><span class="st">  </span><span class="kw">group_by</span>(IsActiveMember, Exited) <span class="op">%&gt;%</span></span>
+<span id="cb1-73"><a href="#cb1-73"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-74"><a href="#cb1-74"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> IsActiveMember, <span class="dt">y =</span> n, <span class="dt">fill =</span> Exited)) <span class="op">+</span></span>
+<span id="cb1-75"><a href="#cb1-75"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="op">+</span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent) <span class="op">+</span></span>
+<span id="cb1-76"><a href="#cb1-76"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">x =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb1-77"><a href="#cb1-77"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-78"><a href="#cb1-78"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="op">+</span></span>
+<span id="cb1-79"><a href="#cb1-79"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Active Member&quot;</span>)</span>
+<span id="cb1-80"><a href="#cb1-80"></a></span>
+<span id="cb1-81"><a href="#cb1-81"></a><span class="co"># Distribution by Gender</span></span>
+<span id="cb1-82"><a href="#cb1-82"></a>data <span class="op">%&gt;%</span></span>
+<span id="cb1-83"><a href="#cb1-83"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Gender =</span> <span class="kw">factor</span>(Gender, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb1-84"><a href="#cb1-84"></a><span class="st">  </span><span class="kw">group_by</span>(Gender, Exited) <span class="op">%&gt;%</span></span>
+<span id="cb1-85"><a href="#cb1-85"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-86"><a href="#cb1-86"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> n, <span class="dt">fill =</span> Exited)) <span class="op">+</span></span>
+<span id="cb1-87"><a href="#cb1-87"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="op">+</span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent) <span class="op">+</span></span>
+<span id="cb1-88"><a href="#cb1-88"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">x =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb1-89"><a href="#cb1-89"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb1-90"><a href="#cb1-90"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="op">+</span></span>
+<span id="cb1-91"><a href="#cb1-91"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Gender&quot;</span>)</span>
+<span id="cb1-92"><a href="#cb1-92"></a></span>
+<span id="cb1-93"><a href="#cb1-93"></a><span class="co">#check for zero var</span></span>
+<span id="cb1-94"><a href="#cb1-94"></a>nzv &lt;-<span class="st"> </span><span class="kw">nearZeroVar</span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric))</span>
+<span id="cb1-95"><a href="#cb1-95"></a>filteredDescr &lt;-<span class="st"> </span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric))[, <span class="op">-</span>nzv]</span>
+<span id="cb1-96"><a href="#cb1-96"></a><span class="kw">dim</span>(filteredDescr)</span>
+<span id="cb1-97"><a href="#cb1-97"></a></span>
+<span id="cb1-98"><a href="#cb1-98"></a></span>
+<span id="cb1-99"><a href="#cb1-99"></a><span class="co">#visual correlation matrix</span></span>
+<span id="cb1-100"><a href="#cb1-100"></a>cormat&lt;-<span class="kw">cor</span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric))</span>
+<span id="cb1-101"><a href="#cb1-101"></a><span class="kw">corrplot</span>(cormat,<span class="dt">method=</span><span class="st">&#39;number&#39;</span>)</span>
+<span id="cb1-102"><a href="#cb1-102"></a></span>
+<span id="cb1-103"><a href="#cb1-103"></a>highlyCorDescr &lt;-<span class="st"> </span><span class="kw">findCorrelation</span>(cormat, <span class="dt">cutoff =</span> <span class="fl">.01</span>)</span>
+<span id="cb1-104"><a href="#cb1-104"></a>filteredDescr &lt;-<span class="st"> </span>filteredDescr[, <span class="op">-</span>highlyCorDescr]</span>
+<span id="cb1-105"><a href="#cb1-105"></a>descCor2 &lt;-<span class="st"> </span><span class="kw">cor</span>(filteredDescr)</span>
+<span id="cb1-106"><a href="#cb1-106"></a><span class="kw">summary</span>(descCor2[<span class="kw">upper.tri</span>(descCor2)])</span>
+<span id="cb1-107"><a href="#cb1-107"></a></span>
+<span id="cb1-108"><a href="#cb1-108"></a></span>
+<span id="cb1-109"><a href="#cb1-109"></a><span class="co">#check for linear combinations</span></span>
+<span id="cb1-110"><a href="#cb1-110"></a>comboInfo &lt;-<span class="st"> </span><span class="kw">findLinearCombos</span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric))</span>
+<span id="cb1-111"><a href="#cb1-111"></a>comboInfo</span>
+<span id="cb1-112"><a href="#cb1-112"></a></span>
+<span id="cb1-113"><a href="#cb1-113"></a></span>
+<span id="cb1-114"><a href="#cb1-114"></a><span class="co">#creation of dummy variables</span></span>
+<span id="cb1-115"><a href="#cb1-115"></a>dummies &lt;-<span class="st"> </span><span class="kw">dummyVars</span>(Exited <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> data)</span>
+<span id="cb1-116"><a href="#cb1-116"></a>dummydata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">predict</span>(dummies, <span class="dt">newdata =</span> data))</span>
+<span id="cb1-117"><a href="#cb1-117"></a>data &lt;-<span class="st"> </span><span class="kw">cbind</span>(dummydata, <span class="dt">Exited =</span> data<span class="op">$</span>Exited)</span>
+<span id="cb1-118"><a href="#cb1-118"></a></span>
+<span id="cb1-119"><a href="#cb1-119"></a></span>
+<span id="cb1-120"><a href="#cb1-120"></a><span class="co">#validation training splits</span></span>
+<span id="cb1-121"><a href="#cb1-121"></a><span class="co"># create a list of 80% of the rows in the original dataset</span></span>
+<span id="cb1-122"><a href="#cb1-122"></a>validationIndex &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(data<span class="op">$</span>Exited, <span class="dt">p=</span><span class="fl">0.80</span>, <span class="dt">list=</span><span class="ot">FALSE</span>)</span>
+<span id="cb1-123"><a href="#cb1-123"></a><span class="co"># select 20% of the data for validation</span></span>
+<span id="cb1-124"><a href="#cb1-124"></a>validation &lt;-<span class="st"> </span>data[<span class="op">-</span>validationIndex,]</span>
+<span id="cb1-125"><a href="#cb1-125"></a><span class="co"># use the remaining 80% of data to training and testing the models</span></span>
+<span id="cb1-126"><a href="#cb1-126"></a>training &lt;-<span class="st"> </span>data[validationIndex,]</span>
+<span id="cb1-127"><a href="#cb1-127"></a></span>
+<span id="cb1-128"><a href="#cb1-128"></a><span class="co"># summarize the class distribution</span></span>
+<span id="cb1-129"><a href="#cb1-129"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(training<span class="op">$</span>Exited))</span>
+<span id="cb1-130"><a href="#cb1-130"></a></span>
+<span id="cb1-131"><a href="#cb1-131"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(validation<span class="op">$</span>Exited))</span>
+<span id="cb1-132"><a href="#cb1-132"></a></span>
+<span id="cb1-133"><a href="#cb1-133"></a></span>
+<span id="cb1-134"><a href="#cb1-134"></a><span class="co">#preprocess data</span></span>
+<span id="cb1-135"><a href="#cb1-135"></a>preproc1 &lt;-<span class="st"> </span><span class="kw">preProcess</span>(training[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">15</span>)],</span>
+<span id="cb1-136"><a href="#cb1-136"></a>                       <span class="dt">method=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>))</span>
+<span id="cb1-137"><a href="#cb1-137"></a>training &lt;-<span class="st"> </span><span class="kw">predict</span>(preproc1, training)</span>
+<span id="cb1-138"><a href="#cb1-138"></a><span class="kw">summary</span>(training)</span>
+<span id="cb1-139"><a href="#cb1-139"></a></span>
+<span id="cb1-140"><a href="#cb1-140"></a>preproc2 &lt;-<span class="st"> </span><span class="kw">preProcess</span>(validation[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">15</span>)],</span>
+<span id="cb1-141"><a href="#cb1-141"></a>                       <span class="dt">method=</span><span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>))</span>
+<span id="cb1-142"><a href="#cb1-142"></a>validation &lt;-<span class="st"> </span><span class="kw">predict</span>(preproc2, validation)</span>
+<span id="cb1-143"><a href="#cb1-143"></a><span class="kw">summary</span>(validation)</span>
+<span id="cb1-144"><a href="#cb1-144"></a></span>
+<span id="cb1-145"><a href="#cb1-145"></a></span>
+<span id="cb1-146"><a href="#cb1-146"></a><span class="co">#recursive feature elimination</span></span>
+<span id="cb1-147"><a href="#cb1-147"></a>rfecontroler &lt;-<span class="st"> </span><span class="kw">rfeControl</span>(<span class="dt">functions=</span>rfFuncs, <span class="dt">method=</span><span class="st">&quot;cv&quot;</span>, <span class="dt">number=</span><span class="dv">5</span>)</span>
+<span id="cb1-148"><a href="#cb1-148"></a><span class="co"># run the RFE algorithm</span></span>
+<span id="cb1-149"><a href="#cb1-149"></a>results1 &lt;-<span class="st"> </span><span class="kw">rfe</span>(training[,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>], training[,<span class="dv">16</span>],</span>
+<span id="cb1-150"><a href="#cb1-150"></a>                <span class="dt">sizes=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>), <span class="dt">rfeControl=</span>rfecontroler)</span>
+<span id="cb1-151"><a href="#cb1-151"></a>results2 &lt;-<span class="st"> </span><span class="kw">rfe</span>(training[,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>], training[,<span class="dv">16</span>],</span>
+<span id="cb1-152"><a href="#cb1-152"></a>                <span class="dt">sizes=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>), <span class="dt">rfeControl=</span>rfecontroler)</span>
+<span id="cb1-153"><a href="#cb1-153"></a>results3 &lt;-<span class="st"> </span><span class="kw">rfe</span>(training[,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>], training[,<span class="dv">16</span>],</span>
+<span id="cb1-154"><a href="#cb1-154"></a>                <span class="dt">sizes=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>), <span class="dt">rfeControl=</span>rfecontroler)</span>
+<span id="cb1-155"><a href="#cb1-155"></a>results4 &lt;-<span class="st"> </span><span class="kw">rfe</span>(training[,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>], training[,<span class="dv">16</span>],</span>
+<span id="cb1-156"><a href="#cb1-156"></a>                <span class="dt">sizes=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>), <span class="dt">rfeControl=</span>rfecontroler)</span>
+<span id="cb1-157"><a href="#cb1-157"></a><span class="co"># summarize the results</span></span>
+<span id="cb1-158"><a href="#cb1-158"></a></span>
+<span id="cb1-159"><a href="#cb1-159"></a><span class="co"># list the chosen features</span></span>
+<span id="cb1-160"><a href="#cb1-160"></a><span class="kw">predictors</span>(results1)</span>
+<span id="cb1-161"><a href="#cb1-161"></a></span>
+<span id="cb1-162"><a href="#cb1-162"></a></span>
+<span id="cb1-163"><a href="#cb1-163"></a><span class="co">#set up for model eval</span></span>
+<span id="cb1-164"><a href="#cb1-164"></a>control &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method=</span><span class="st">&quot;cv&quot;</span>,</span>
+<span id="cb1-165"><a href="#cb1-165"></a>                        <span class="dt">number=</span><span class="dv">5</span>,</span>
+<span id="cb1-166"><a href="#cb1-166"></a>                        <span class="dt">summaryFunction =</span> twoClassSummary,</span>
+<span id="cb1-167"><a href="#cb1-167"></a>                        <span class="dt">classProbs =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-168"><a href="#cb1-168"></a>                        <span class="dt">savePredictions =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-169"><a href="#cb1-169"></a>                        <span class="dt">verboseIter =</span> F)</span>
+<span id="cb1-170"><a href="#cb1-170"></a>metric &lt;-<span class="st"> &quot;ROC&quot;</span></span>
+<span id="cb1-171"><a href="#cb1-171"></a></span>
+<span id="cb1-172"><a href="#cb1-172"></a></span>
+<span id="cb1-173"><a href="#cb1-173"></a><span class="co">#Model evaluation</span></span>
+<span id="cb1-174"><a href="#cb1-174"></a><span class="co"># linear algorithms</span></span>
+<span id="cb1-175"><a href="#cb1-175"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-176"><a href="#cb1-176"></a>fit.lda &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data=</span>training,</span>
+<span id="cb1-177"><a href="#cb1-177"></a>                 <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control)</span>
+<span id="cb1-178"><a href="#cb1-178"></a><span class="co"># nonlinear algorithms</span></span>
+<span id="cb1-179"><a href="#cb1-179"></a><span class="co"># CART</span></span>
+<span id="cb1-180"><a href="#cb1-180"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-181"><a href="#cb1-181"></a>fit.cart &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data=</span>training,</span>
+<span id="cb1-182"><a href="#cb1-182"></a>                  <span class="dt">method=</span><span class="st">&quot;rpart&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control)</span>
+<span id="cb1-183"><a href="#cb1-183"></a><span class="co"># kNN</span></span>
+<span id="cb1-184"><a href="#cb1-184"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-185"><a href="#cb1-185"></a>fit.knn &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data=</span>training,</span>
+<span id="cb1-186"><a href="#cb1-186"></a>                 <span class="dt">method=</span><span class="st">&quot;knn&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control)</span>
+<span id="cb1-187"><a href="#cb1-187"></a><span class="co"># advanced algorithms</span></span>
+<span id="cb1-188"><a href="#cb1-188"></a><span class="co"># SVM</span></span>
+<span id="cb1-189"><a href="#cb1-189"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-190"><a href="#cb1-190"></a>fit.svm &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data=</span>training,</span>
+<span id="cb1-191"><a href="#cb1-191"></a>                 <span class="dt">method=</span><span class="st">&quot;svmRadial&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control)</span>
+<span id="cb1-192"><a href="#cb1-192"></a><span class="co">#Decision Tree</span></span>
+<span id="cb1-193"><a href="#cb1-193"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-194"><a href="#cb1-194"></a>fit.tree &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data =</span> training,</span>
+<span id="cb1-195"><a href="#cb1-195"></a>                  <span class="dt">method=</span><span class="st">&quot;rpart&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control)</span>
+<span id="cb1-196"><a href="#cb1-196"></a><span class="co"># Random Forest</span></span>
+<span id="cb1-197"><a href="#cb1-197"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-198"><a href="#cb1-198"></a>fit.rf &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data=</span>training,</span>
+<span id="cb1-199"><a href="#cb1-199"></a>                <span class="dt">method=</span><span class="st">&quot;rf&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control)</span>
+<span id="cb1-200"><a href="#cb1-200"></a><span class="co"># Neural Net</span></span>
+<span id="cb1-201"><a href="#cb1-201"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-202"><a href="#cb1-202"></a>fit.net &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data=</span>training,</span>
+<span id="cb1-203"><a href="#cb1-203"></a>                 <span class="dt">method=</span><span class="st">&quot;nnet&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control, <span class="dt">verbose =</span> F)</span>
+<span id="cb1-204"><a href="#cb1-204"></a><span class="co">#Gradient Boosted</span></span>
+<span id="cb1-205"><a href="#cb1-205"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-206"><a href="#cb1-206"></a>fit.gbm &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>., <span class="dt">data =</span> training,</span>
+<span id="cb1-207"><a href="#cb1-207"></a>                 <span class="dt">method=</span><span class="st">&quot;gbm&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control, <span class="dt">verbose =</span> F)</span>
+<span id="cb1-208"><a href="#cb1-208"></a>fit.gbm2 &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>Age<span class="op">+</span>NumOfProducts</span>
+<span id="cb1-209"><a href="#cb1-209"></a>                  <span class="op">+</span>IsActiveMember.Active<span class="op">+</span>IsActiveMember.NonActive</span>
+<span id="cb1-210"><a href="#cb1-210"></a>                  <span class="op">+</span>Balance<span class="op">+</span>GeographyGermany,</span>
+<span id="cb1-211"><a href="#cb1-211"></a>                  <span class="dt">data =</span> training,</span>
+<span id="cb1-212"><a href="#cb1-212"></a>                  <span class="dt">method=</span><span class="st">&quot;gbm&quot;</span>, <span class="dt">metric=</span>metric, <span class="dt">trControl=</span>control, <span class="dt">verbose =</span> F)</span>
+<span id="cb1-213"><a href="#cb1-213"></a></span>
+<span id="cb1-214"><a href="#cb1-214"></a></span>
+<span id="cb1-215"><a href="#cb1-215"></a></span>
+<span id="cb1-216"><a href="#cb1-216"></a><span class="co">#summarize accuracy of models</span></span>
+<span id="cb1-217"><a href="#cb1-217"></a>modelresults &lt;-<span class="st"> </span><span class="kw">resamples</span>(<span class="kw">list</span>(<span class="dt">lda=</span>fit.lda, <span class="dt">cart=</span>fit.cart, <span class="dt">knn=</span>fit.knn,</span>
+<span id="cb1-218"><a href="#cb1-218"></a>                          <span class="dt">svm=</span>fit.svm, <span class="dt">rf=</span>fit.rf, <span class="dt">net=</span>fit.net, <span class="dt">gbm=</span>fit.gbm,</span>
+<span id="cb1-219"><a href="#cb1-219"></a>                          <span class="dt">tree=</span>fit.tree, <span class="dt">gbm.rfe=</span>fit.gbm2))</span>
+<span id="cb1-220"><a href="#cb1-220"></a></span>
+<span id="cb1-221"><a href="#cb1-221"></a><span class="kw">summary</span>(modelresults)</span>
+<span id="cb1-222"><a href="#cb1-222"></a></span>
+<span id="cb1-223"><a href="#cb1-223"></a>fit.gbm<span class="op">$</span>bestTune</span>
+<span id="cb1-224"><a href="#cb1-224"></a></span>
+<span id="cb1-225"><a href="#cb1-225"></a></span>
+<span id="cb1-226"><a href="#cb1-226"></a></span>
+<span id="cb1-227"><a href="#cb1-227"></a><span class="co">#subsampling testing</span></span>
+<span id="cb1-228"><a href="#cb1-228"></a>down_train &lt;-<span class="st"> </span><span class="kw">downSample</span>(<span class="dt">x =</span> training[, <span class="op">-</span><span class="kw">ncol</span>(training)],</span>
+<span id="cb1-229"><a href="#cb1-229"></a>                         <span class="dt">y =</span> training<span class="op">$</span>Exited)</span>
+<span id="cb1-230"><a href="#cb1-230"></a><span class="kw">table</span>(down_train<span class="op">$</span>Class)</span>
+<span id="cb1-231"><a href="#cb1-231"></a></span>
+<span id="cb1-232"><a href="#cb1-232"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-233"><a href="#cb1-233"></a>fit.gbm.down &lt;-<span class="st"> </span><span class="kw">train</span>(Class<span class="op">~</span>.,</span>
+<span id="cb1-234"><a href="#cb1-234"></a>                       <span class="dt">data =</span> down_train,</span>
+<span id="cb1-235"><a href="#cb1-235"></a>                       <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-236"><a href="#cb1-236"></a>                       <span class="dt">metric =</span> metric,</span>
+<span id="cb1-237"><a href="#cb1-237"></a>                       <span class="dt">trControl =</span> control,</span>
+<span id="cb1-238"><a href="#cb1-238"></a>                      <span class="dt">verbose =</span> F)</span>
+<span id="cb1-239"><a href="#cb1-239"></a></span>
+<span id="cb1-240"><a href="#cb1-240"></a></span>
+<span id="cb1-241"><a href="#cb1-241"></a>up_train &lt;-<span class="st"> </span><span class="kw">upSample</span>(<span class="dt">x =</span> training[, <span class="op">-</span><span class="kw">ncol</span>(training)],</span>
+<span id="cb1-242"><a href="#cb1-242"></a>                     <span class="dt">y =</span> training<span class="op">$</span>Exited)                         </span>
+<span id="cb1-243"><a href="#cb1-243"></a><span class="kw">table</span>(up_train<span class="op">$</span>Class) </span>
+<span id="cb1-244"><a href="#cb1-244"></a></span>
+<span id="cb1-245"><a href="#cb1-245"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-246"><a href="#cb1-246"></a>fit.gbm.up &lt;-<span class="st"> </span><span class="kw">train</span>(Class<span class="op">~</span>.,</span>
+<span id="cb1-247"><a href="#cb1-247"></a>                       <span class="dt">data =</span> up_train,</span>
+<span id="cb1-248"><a href="#cb1-248"></a>                       <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-249"><a href="#cb1-249"></a>                       <span class="dt">metric =</span> metric,</span>
+<span id="cb1-250"><a href="#cb1-250"></a>                       <span class="dt">trControl =</span> control,</span>
+<span id="cb1-251"><a href="#cb1-251"></a>                    <span class="dt">verbose =</span> F)</span>
+<span id="cb1-252"><a href="#cb1-252"></a></span>
+<span id="cb1-253"><a href="#cb1-253"></a></span>
+<span id="cb1-254"><a href="#cb1-254"></a>rose_train &lt;-<span class="st"> </span><span class="kw">ROSE</span>(Exited <span class="op">~</span><span class="st"> </span>., <span class="dt">data  =</span> training)<span class="op">$</span>data                         </span>
+<span id="cb1-255"><a href="#cb1-255"></a><span class="kw">table</span>(rose_train<span class="op">$</span>Exited)</span>
+<span id="cb1-256"><a href="#cb1-256"></a></span>
+<span id="cb1-257"><a href="#cb1-257"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-258"><a href="#cb1-258"></a>fit.gbm.rose &lt;-<span class="st"> </span><span class="kw">train</span>(Exited <span class="op">~</span><span class="st"> </span>., </span>
+<span id="cb1-259"><a href="#cb1-259"></a>                       <span class="dt">data =</span> rose_train,</span>
+<span id="cb1-260"><a href="#cb1-260"></a>                       <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-261"><a href="#cb1-261"></a>                       <span class="dt">metric =</span> metric,</span>
+<span id="cb1-262"><a href="#cb1-262"></a>                       <span class="dt">trControl =</span> control,</span>
+<span id="cb1-263"><a href="#cb1-263"></a>                      <span class="dt">verbose =</span> F)</span>
+<span id="cb1-264"><a href="#cb1-264"></a></span>
+<span id="cb1-265"><a href="#cb1-265"></a></span>
+<span id="cb1-266"><a href="#cb1-266"></a><span class="co">#summarize accuracy of models</span></span>
+<span id="cb1-267"><a href="#cb1-267"></a>subsampleresults &lt;-<span class="st"> </span><span class="kw">resamples</span>(<span class="kw">list</span>(<span class="dt">Base=</span>fit.gbm,</span>
+<span id="cb1-268"><a href="#cb1-268"></a>                                   <span class="dt">Down=</span>fit.gbm.down,</span>
+<span id="cb1-269"><a href="#cb1-269"></a>                                   <span class="dt">Up=</span>fit.gbm.up,</span>
+<span id="cb1-270"><a href="#cb1-270"></a>                                   <span class="dt">Rose=</span>fit.gbm.rose))</span>
+<span id="cb1-271"><a href="#cb1-271"></a></span>
+<span id="cb1-272"><a href="#cb1-272"></a><span class="kw">summary</span>(subsampleresults)</span>
+<span id="cb1-273"><a href="#cb1-273"></a></span>
+<span id="cb1-274"><a href="#cb1-274"></a></span>
+<span id="cb1-275"><a href="#cb1-275"></a><span class="co">#testing models based on roc</span></span>
+<span id="cb1-276"><a href="#cb1-276"></a>test_roc &lt;-<span class="st"> </span><span class="cf">function</span>(model, data) {</span>
+<span id="cb1-277"><a href="#cb1-277"></a>  <span class="kw">library</span>(pROC)</span>
+<span id="cb1-278"><a href="#cb1-278"></a>  roc_obj &lt;-<span class="st"> </span><span class="kw">roc</span>(data<span class="op">$</span>Exited, </span>
+<span id="cb1-279"><a href="#cb1-279"></a>                 <span class="kw">predict</span>(model, data, <span class="dt">type =</span> <span class="st">&quot;prob&quot;</span>)[, <span class="st">&quot;Stay&quot;</span>],</span>
+<span id="cb1-280"><a href="#cb1-280"></a>                 <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Stay&quot;</span>, <span class="st">&quot;Leave&quot;</span>))</span>
+<span id="cb1-281"><a href="#cb1-281"></a>  <span class="kw">ci</span>(roc_obj)</span>
+<span id="cb1-282"><a href="#cb1-282"></a>}</span>
+<span id="cb1-283"><a href="#cb1-283"></a></span>
+<span id="cb1-284"><a href="#cb1-284"></a></span>
+<span id="cb1-285"><a href="#cb1-285"></a><span class="co">#subsampling model results</span></span>
+<span id="cb1-286"><a href="#cb1-286"></a>inside_models &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">original =</span> fit.gbm,</span>
+<span id="cb1-287"><a href="#cb1-287"></a>                      <span class="dt">down =</span> fit.gbm.down,</span>
+<span id="cb1-288"><a href="#cb1-288"></a>                      <span class="dt">up =</span> fit.gbm.up,</span>
+<span id="cb1-289"><a href="#cb1-289"></a>                      <span class="dt">ROSE =</span> fit.gbm.rose)</span>
+<span id="cb1-290"><a href="#cb1-290"></a></span>
+<span id="cb1-291"><a href="#cb1-291"></a>inside_resampling &lt;-<span class="st"> </span><span class="kw">resamples</span>(inside_models)</span>
+<span id="cb1-292"><a href="#cb1-292"></a></span>
+<span id="cb1-293"><a href="#cb1-293"></a>inside_test &lt;-<span class="st"> </span><span class="kw">lapply</span>(inside_models, test_roc, <span class="dt">data =</span> training)</span>
+<span id="cb1-294"><a href="#cb1-294"></a>inside_test &lt;-<span class="st"> </span><span class="kw">lapply</span>(inside_test, as.vector)</span>
+<span id="cb1-295"><a href="#cb1-295"></a>inside_test &lt;-<span class="st"> </span><span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, inside_test)</span>
+<span id="cb1-296"><a href="#cb1-296"></a><span class="kw">colnames</span>(inside_test) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;lower&quot;</span>, <span class="st">&quot;ROC&quot;</span>, <span class="st">&quot;upper&quot;</span>)</span>
+<span id="cb1-297"><a href="#cb1-297"></a>inside_test &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(inside_test)</span>
+<span id="cb1-298"><a href="#cb1-298"></a></span>
+<span id="cb1-299"><a href="#cb1-299"></a><span class="kw">summary</span>(inside_resampling, <span class="dt">metric =</span> <span class="st">&quot;ROC&quot;</span>)</span>
+<span id="cb1-300"><a href="#cb1-300"></a></span>
+<span id="cb1-301"><a href="#cb1-301"></a></span>
+<span id="cb1-302"><a href="#cb1-302"></a><span class="co">#look at ROC curve for upsample</span></span>
+<span id="cb1-303"><a href="#cb1-303"></a>res &lt;-<span class="st"> </span><span class="kw">evalm</span>(fit.gbm.up, <span class="dt">plots =</span> <span class="st">&#39;r&#39;</span>,<span class="dt">rlinethick=</span><span class="fl">0.8</span>,<span class="dt">fsize=</span><span class="dv">8</span>,<span class="dt">bins=</span><span class="dv">8</span>)</span>
+<span id="cb1-304"><a href="#cb1-304"></a></span>
+<span id="cb1-305"><a href="#cb1-305"></a></span>
+<span id="cb1-306"><a href="#cb1-306"></a><span class="co"># summarize Best Model</span></span>
+<span id="cb1-307"><a href="#cb1-307"></a>fit.gbm.up<span class="op">$</span>bestTune</span>
+<span id="cb1-308"><a href="#cb1-308"></a></span>
+<span id="cb1-309"><a href="#cb1-309"></a><span class="kw">plot</span>(<span class="kw">varImp</span>(fit.gbm.up, <span class="dt">scale =</span> <span class="ot">FALSE</span>), <span class="dt">top =</span> <span class="dv">15</span>)</span>
+<span id="cb1-310"><a href="#cb1-310"></a></span>
+<span id="cb1-311"><a href="#cb1-311"></a></span>
+<span id="cb1-312"><a href="#cb1-312"></a></span>
+<span id="cb1-313"><a href="#cb1-313"></a><span class="co">#run number of iterations of different models and output best version</span></span>
+<span id="cb1-314"><a href="#cb1-314"></a><span class="co">#for up sample</span></span>
+<span id="cb1-315"><a href="#cb1-315"></a>gbmGrid &lt;-<span class="st">  </span><span class="kw">expand.grid</span>(<span class="dt">interaction.depth =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>), </span>
+<span id="cb1-316"><a href="#cb1-316"></a>                        <span class="dt">n.trees =</span> (<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>)<span class="op">*</span><span class="dv">100</span>, </span>
+<span id="cb1-317"><a href="#cb1-317"></a>                        <span class="dt">shrinkage =</span> <span class="fl">0.1</span>,</span>
+<span id="cb1-318"><a href="#cb1-318"></a>                        <span class="dt">n.minobsinnode =</span> <span class="dv">20</span>)</span>
+<span id="cb1-319"><a href="#cb1-319"></a></span>
+<span id="cb1-320"><a href="#cb1-320"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-321"><a href="#cb1-321"></a>fit.gbm.up.tune &lt;-<span class="st"> </span><span class="kw">train</span>(Class<span class="op">~</span>.,</span>
+<span id="cb1-322"><a href="#cb1-322"></a>                    <span class="dt">data =</span> up_train,</span>
+<span id="cb1-323"><a href="#cb1-323"></a>                    <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-324"><a href="#cb1-324"></a>                    <span class="dt">metric =</span> metric,</span>
+<span id="cb1-325"><a href="#cb1-325"></a>                    <span class="dt">trControl =</span> control,</span>
+<span id="cb1-326"><a href="#cb1-326"></a>                    <span class="dt">verbose =</span> F,</span>
+<span id="cb1-327"><a href="#cb1-327"></a>                    <span class="dt">tuneGrid =</span> gbmGrid)</span>
+<span id="cb1-328"><a href="#cb1-328"></a></span>
+<span id="cb1-329"><a href="#cb1-329"></a>fit.gbm.up.tune</span>
+<span id="cb1-330"><a href="#cb1-330"></a><span class="kw">ggplot</span>(fit.gbm.up.tune)</span>
+<span id="cb1-331"><a href="#cb1-331"></a></span>
+<span id="cb1-332"><a href="#cb1-332"></a></span>
+<span id="cb1-333"><a href="#cb1-333"></a><span class="kw">plot</span>(fit.gbm.up.tune, <span class="dt">plotType =</span> <span class="st">&quot;level&quot;</span>,</span>
+<span id="cb1-334"><a href="#cb1-334"></a>     <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">rot =</span> <span class="dv">90</span>)))</span>
+<span id="cb1-335"><a href="#cb1-335"></a></span>
+<span id="cb1-336"><a href="#cb1-336"></a>fit.gbm.up.tune<span class="op">$</span>bestTune</span>
+<span id="cb1-337"><a href="#cb1-337"></a></span>
+<span id="cb1-338"><a href="#cb1-338"></a></span>
+<span id="cb1-339"><a href="#cb1-339"></a><span class="co">#run best uptune model</span></span>
+<span id="cb1-340"><a href="#cb1-340"></a>uptuneGrid &lt;-<span class="st">  </span><span class="kw">expand.grid</span>(<span class="dt">interaction.depth =</span> <span class="dv">9</span>, </span>
+<span id="cb1-341"><a href="#cb1-341"></a>                        <span class="dt">n.trees =</span> <span class="dv">3000</span>, </span>
+<span id="cb1-342"><a href="#cb1-342"></a>                        <span class="dt">shrinkage =</span> <span class="fl">0.1</span>,</span>
+<span id="cb1-343"><a href="#cb1-343"></a>                        <span class="dt">n.minobsinnode =</span> <span class="dv">20</span>)</span>
+<span id="cb1-344"><a href="#cb1-344"></a></span>
+<span id="cb1-345"><a href="#cb1-345"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-346"><a href="#cb1-346"></a>fit.uptune &lt;-<span class="st"> </span><span class="kw">train</span>(Class<span class="op">~</span>.,</span>
+<span id="cb1-347"><a href="#cb1-347"></a>                    <span class="dt">data =</span> up_train,</span>
+<span id="cb1-348"><a href="#cb1-348"></a>                    <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-349"><a href="#cb1-349"></a>                    <span class="dt">metric =</span> metric,</span>
+<span id="cb1-350"><a href="#cb1-350"></a>                    <span class="dt">trControl =</span> control,</span>
+<span id="cb1-351"><a href="#cb1-351"></a>                    <span class="dt">verbose =</span> F,</span>
+<span id="cb1-352"><a href="#cb1-352"></a>                    <span class="dt">tuneGrid =</span> uptuneGrid)</span>
+<span id="cb1-353"><a href="#cb1-353"></a></span>
+<span id="cb1-354"><a href="#cb1-354"></a></span>
+<span id="cb1-355"><a href="#cb1-355"></a><span class="co">#tune base model</span></span>
+<span id="cb1-356"><a href="#cb1-356"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-357"><a href="#cb1-357"></a>fit.gbm.tune &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>.,</span>
+<span id="cb1-358"><a href="#cb1-358"></a>                    <span class="dt">data =</span> training,</span>
+<span id="cb1-359"><a href="#cb1-359"></a>                    <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-360"><a href="#cb1-360"></a>                    <span class="dt">metric =</span> metric,</span>
+<span id="cb1-361"><a href="#cb1-361"></a>                    <span class="dt">trControl =</span> control,</span>
+<span id="cb1-362"><a href="#cb1-362"></a>                    <span class="dt">verbose =</span> F,</span>
+<span id="cb1-363"><a href="#cb1-363"></a>                    <span class="dt">tuneGrid =</span> gbmGrid)</span>
+<span id="cb1-364"><a href="#cb1-364"></a></span>
+<span id="cb1-365"><a href="#cb1-365"></a></span>
+<span id="cb1-366"><a href="#cb1-366"></a>fit.gbm.tune<span class="op">$</span>bestTune</span>
+<span id="cb1-367"><a href="#cb1-367"></a></span>
+<span id="cb1-368"><a href="#cb1-368"></a></span>
+<span id="cb1-369"><a href="#cb1-369"></a></span>
+<span id="cb1-370"><a href="#cb1-370"></a><span class="co">#check best base model</span></span>
+<span id="cb1-371"><a href="#cb1-371"></a>bestGrid &lt;-<span class="st">  </span><span class="kw">expand.grid</span>(<span class="dt">interaction.depth =</span> <span class="dv">5</span>, </span>
+<span id="cb1-372"><a href="#cb1-372"></a>                        <span class="dt">n.trees =</span> <span class="dv">100</span>, </span>
+<span id="cb1-373"><a href="#cb1-373"></a>                        <span class="dt">shrinkage =</span> <span class="fl">0.1</span>,</span>
+<span id="cb1-374"><a href="#cb1-374"></a>                        <span class="dt">n.minobsinnode =</span> <span class="dv">20</span>)</span>
+<span id="cb1-375"><a href="#cb1-375"></a></span>
+<span id="cb1-376"><a href="#cb1-376"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb1-377"><a href="#cb1-377"></a>fit.gbm.best &lt;-<span class="st"> </span><span class="kw">train</span>(Exited<span class="op">~</span>.,</span>
+<span id="cb1-378"><a href="#cb1-378"></a>                    <span class="dt">data =</span> training,</span>
+<span id="cb1-379"><a href="#cb1-379"></a>                    <span class="dt">method =</span> <span class="st">&quot;gbm&quot;</span>,</span>
+<span id="cb1-380"><a href="#cb1-380"></a>                    <span class="dt">metric =</span> metric,</span>
+<span id="cb1-381"><a href="#cb1-381"></a>                    <span class="dt">trControl =</span> control,</span>
+<span id="cb1-382"><a href="#cb1-382"></a>                    <span class="dt">verbose =</span> F,</span>
+<span id="cb1-383"><a href="#cb1-383"></a>                    <span class="dt">tuneGrid =</span> bestGrid)</span>
+<span id="cb1-384"><a href="#cb1-384"></a></span>
+<span id="cb1-385"><a href="#cb1-385"></a></span>
+<span id="cb1-386"><a href="#cb1-386"></a>res &lt;-<span class="st"> </span><span class="kw">evalm</span>(fit.gbm.best, <span class="dt">plots =</span> <span class="st">&#39;r&#39;</span>,<span class="dt">rlinethick=</span><span class="fl">0.8</span>,<span class="dt">fsize=</span><span class="dv">8</span>,<span class="dt">bins=</span><span class="dv">8</span>)</span>
+<span id="cb1-387"><a href="#cb1-387"></a></span>
+<span id="cb1-388"><a href="#cb1-388"></a></span>
+<span id="cb1-389"><a href="#cb1-389"></a><span class="co">#look at test predictions of models</span></span>
+<span id="cb1-390"><a href="#cb1-390"></a><span class="co"># estimate skill on the validation dataset</span></span>
+<span id="cb1-391"><a href="#cb1-391"></a>predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.gbm, validation)</span>
+<span id="cb1-392"><a href="#cb1-392"></a><span class="co">#confusion matrix</span></span>
+<span id="cb1-393"><a href="#cb1-393"></a><span class="kw">confusionMatrix</span>(predictions, validation<span class="op">$</span>Exited)</span>
+<span id="cb1-394"><a href="#cb1-394"></a></span>
+<span id="cb1-395"><a href="#cb1-395"></a><span class="co"># estimate skill on the validation dataset</span></span>
+<span id="cb1-396"><a href="#cb1-396"></a>predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.uptune, validation)</span>
+<span id="cb1-397"><a href="#cb1-397"></a><span class="co">#confusion matrix</span></span>
+<span id="cb1-398"><a href="#cb1-398"></a><span class="kw">confusionMatrix</span>(predictions, validation<span class="op">$</span>Exited)</span>
+<span id="cb1-399"><a href="#cb1-399"></a></span>
+<span id="cb1-400"><a href="#cb1-400"></a><span class="co"># estimate skill on the validation dataset</span></span>
+<span id="cb1-401"><a href="#cb1-401"></a>predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.gbm.best, validation)</span>
+<span id="cb1-402"><a href="#cb1-402"></a><span class="co">#confusion matrix</span></span>
+<span id="cb1-403"><a href="#cb1-403"></a><span class="kw">confusionMatrix</span>(predictions, validation<span class="op">$</span>Exited)</span>
+<span id="cb1-404"><a href="#cb1-404"></a></span>
+<span id="cb1-405"><a href="#cb1-405"></a></span>
+<span id="cb1-406"><a href="#cb1-406"></a><span class="co">#output fancy confusion matrix table</span></span>
+<span id="cb1-407"><a href="#cb1-407"></a>predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(fit.gbm, validation)</span>
+<span id="cb1-408"><a href="#cb1-408"></a>cm &lt;-<span class="st"> </span><span class="kw">confusionMatrix</span>(predictions, validation<span class="op">$</span>Exited)</span>
+<span id="cb1-409"><a href="#cb1-409"></a></span>
+<span id="cb1-410"><a href="#cb1-410"></a>draw_confusion_matrix &lt;-<span class="st"> </span><span class="cf">function</span>(cm) {</span>
+<span id="cb1-411"><a href="#cb1-411"></a></span>
+<span id="cb1-412"><a href="#cb1-412"></a>  <span class="kw">layout</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>)))</span>
+<span id="cb1-413"><a href="#cb1-413"></a>  <span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb1-414"><a href="#cb1-414"></a>  <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">345</span>), <span class="kw">c</span>(<span class="dv">300</span>, <span class="dv">450</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-415"><a href="#cb1-415"></a>       <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>)</span>
+<span id="cb1-416"><a href="#cb1-416"></a>  <span class="kw">title</span>(<span class="st">&#39;CONFUSION MATRIX&#39;</span>, <span class="dt">cex.main=</span><span class="dv">2</span>)</span>
+<span id="cb1-417"><a href="#cb1-417"></a></span>
+<span id="cb1-418"><a href="#cb1-418"></a>  <span class="co"># create the matrix </span></span>
+<span id="cb1-419"><a href="#cb1-419"></a>  <span class="kw">rect</span>(<span class="dv">150</span>, <span class="dv">430</span>, <span class="dv">240</span>, <span class="dv">370</span>, <span class="dt">col=</span><span class="st">&#39;#3F97D0&#39;</span>)</span>
+<span id="cb1-420"><a href="#cb1-420"></a>  <span class="kw">text</span>(<span class="dv">195</span>, <span class="dv">435</span>, <span class="st">&#39;Class1&#39;</span>, <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-421"><a href="#cb1-421"></a>  <span class="kw">rect</span>(<span class="dv">250</span>, <span class="dv">430</span>, <span class="dv">340</span>, <span class="dv">370</span>, <span class="dt">col=</span><span class="st">&#39;#F7AD50&#39;</span>)</span>
+<span id="cb1-422"><a href="#cb1-422"></a>  <span class="kw">text</span>(<span class="dv">295</span>, <span class="dv">435</span>, <span class="st">&#39;Class2&#39;</span>, <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-423"><a href="#cb1-423"></a>  <span class="kw">text</span>(<span class="dv">125</span>, <span class="dv">370</span>, <span class="st">&#39;Predicted&#39;</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">srt=</span><span class="dv">90</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-424"><a href="#cb1-424"></a>  <span class="kw">text</span>(<span class="dv">245</span>, <span class="dv">450</span>, <span class="st">&#39;Actual&#39;</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-425"><a href="#cb1-425"></a>  <span class="kw">rect</span>(<span class="dv">150</span>, <span class="dv">305</span>, <span class="dv">240</span>, <span class="dv">365</span>, <span class="dt">col=</span><span class="st">&#39;#F7AD50&#39;</span>)</span>
+<span id="cb1-426"><a href="#cb1-426"></a>  <span class="kw">rect</span>(<span class="dv">250</span>, <span class="dv">305</span>, <span class="dv">340</span>, <span class="dv">365</span>, <span class="dt">col=</span><span class="st">&#39;#3F97D0&#39;</span>)</span>
+<span id="cb1-427"><a href="#cb1-427"></a>  <span class="kw">text</span>(<span class="dv">140</span>, <span class="dv">400</span>, <span class="st">&#39;Class1&#39;</span>, <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">srt=</span><span class="dv">90</span>)</span>
+<span id="cb1-428"><a href="#cb1-428"></a>  <span class="kw">text</span>(<span class="dv">140</span>, <span class="dv">335</span>, <span class="st">&#39;Class2&#39;</span>, <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">srt=</span><span class="dv">90</span>)</span>
+<span id="cb1-429"><a href="#cb1-429"></a></span>
+<span id="cb1-430"><a href="#cb1-430"></a>  <span class="co"># add in the cm results </span></span>
+<span id="cb1-431"><a href="#cb1-431"></a>  res &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(cm<span class="op">$</span>table)</span>
+<span id="cb1-432"><a href="#cb1-432"></a>  <span class="kw">text</span>(<span class="dv">195</span>, <span class="dv">400</span>, res[<span class="dv">1</span>], <span class="dt">cex=</span><span class="fl">1.6</span>, <span class="dt">font=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb1-433"><a href="#cb1-433"></a>  <span class="kw">text</span>(<span class="dv">195</span>, <span class="dv">335</span>, res[<span class="dv">2</span>], <span class="dt">cex=</span><span class="fl">1.6</span>, <span class="dt">font=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb1-434"><a href="#cb1-434"></a>  <span class="kw">text</span>(<span class="dv">295</span>, <span class="dv">400</span>, res[<span class="dv">3</span>], <span class="dt">cex=</span><span class="fl">1.6</span>, <span class="dt">font=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb1-435"><a href="#cb1-435"></a>  <span class="kw">text</span>(<span class="dv">295</span>, <span class="dv">335</span>, res[<span class="dv">4</span>], <span class="dt">cex=</span><span class="fl">1.6</span>, <span class="dt">font=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb1-436"><a href="#cb1-436"></a></span>
+<span id="cb1-437"><a href="#cb1-437"></a>  <span class="co"># add in the specifics </span></span>
+<span id="cb1-438"><a href="#cb1-438"></a>  <span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">0</span>), <span class="dt">type =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-439"><a href="#cb1-439"></a>       <span class="dt">main =</span> <span class="st">&quot;DETAILS&quot;</span>, <span class="dt">xaxt=</span><span class="st">&#39;n&#39;</span>, <span class="dt">yaxt=</span><span class="st">&#39;n&#39;</span>)</span>
+<span id="cb1-440"><a href="#cb1-440"></a>  <span class="kw">text</span>(<span class="dv">10</span>, <span class="dv">85</span>, <span class="kw">names</span>(cm<span class="op">$</span>byClass[<span class="dv">1</span>]), <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-441"><a href="#cb1-441"></a>  <span class="kw">text</span>(<span class="dv">10</span>, <span class="dv">70</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>byClass[<span class="dv">1</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-442"><a href="#cb1-442"></a>  <span class="kw">text</span>(<span class="dv">30</span>, <span class="dv">85</span>, <span class="kw">names</span>(cm<span class="op">$</span>byClass[<span class="dv">2</span>]), <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-443"><a href="#cb1-443"></a>  <span class="kw">text</span>(<span class="dv">30</span>, <span class="dv">70</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>byClass[<span class="dv">2</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-444"><a href="#cb1-444"></a>  <span class="kw">text</span>(<span class="dv">50</span>, <span class="dv">85</span>, <span class="kw">names</span>(cm<span class="op">$</span>byClass[<span class="dv">5</span>]), <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-445"><a href="#cb1-445"></a>  <span class="kw">text</span>(<span class="dv">50</span>, <span class="dv">70</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>byClass[<span class="dv">5</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-446"><a href="#cb1-446"></a>  <span class="kw">text</span>(<span class="dv">70</span>, <span class="dv">85</span>, <span class="kw">names</span>(cm<span class="op">$</span>byClass[<span class="dv">6</span>]), <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-447"><a href="#cb1-447"></a>  <span class="kw">text</span>(<span class="dv">70</span>, <span class="dv">70</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>byClass[<span class="dv">6</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-448"><a href="#cb1-448"></a>  <span class="kw">text</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="kw">names</span>(cm<span class="op">$</span>byClass[<span class="dv">7</span>]), <span class="dt">cex=</span><span class="fl">1.2</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-449"><a href="#cb1-449"></a>  <span class="kw">text</span>(<span class="dv">90</span>, <span class="dv">70</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>byClass[<span class="dv">7</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb1-450"><a href="#cb1-450"></a></span>
+<span id="cb1-451"><a href="#cb1-451"></a>  <span class="co"># add in the accuracy information </span></span>
+<span id="cb1-452"><a href="#cb1-452"></a>  <span class="kw">text</span>(<span class="dv">30</span>, <span class="dv">35</span>, <span class="kw">names</span>(cm<span class="op">$</span>overall[<span class="dv">1</span>]), <span class="dt">cex=</span><span class="fl">1.5</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-453"><a href="#cb1-453"></a>  <span class="kw">text</span>(<span class="dv">30</span>, <span class="dv">20</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>overall[<span class="dv">1</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.4</span>)</span>
+<span id="cb1-454"><a href="#cb1-454"></a>  <span class="kw">text</span>(<span class="dv">70</span>, <span class="dv">35</span>, <span class="kw">names</span>(cm<span class="op">$</span>overall[<span class="dv">2</span>]), <span class="dt">cex=</span><span class="fl">1.5</span>, <span class="dt">font=</span><span class="dv">2</span>)</span>
+<span id="cb1-455"><a href="#cb1-455"></a>  <span class="kw">text</span>(<span class="dv">70</span>, <span class="dv">20</span>, <span class="kw">round</span>(<span class="kw">as.numeric</span>(cm<span class="op">$</span>overall[<span class="dv">2</span>]), <span class="dv">3</span>), <span class="dt">cex=</span><span class="fl">1.4</span>)</span>
+<span id="cb1-456"><a href="#cb1-456"></a>}  </span>
+<span id="cb1-457"><a href="#cb1-457"></a></span>
+<span id="cb1-458"><a href="#cb1-458"></a></span>
+<span id="cb1-459"><a href="#cb1-459"></a><span class="co">#table 1: stats table</span></span>
+<span id="cb1-460"><a href="#cb1-460"></a><span class="co">#mean values</span></span>
+<span id="cb1-461"><a href="#cb1-461"></a>meanValues &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">mean</span>(data<span class="op">$</span>CreditScore),<span class="kw">mean</span>(data<span class="op">$</span>Age),</span>
+<span id="cb1-462"><a href="#cb1-462"></a>                <span class="kw">mean</span>(data<span class="op">$</span>Tenure), <span class="kw">mean</span>(data<span class="op">$</span>Balance),</span>
+<span id="cb1-463"><a href="#cb1-463"></a>             <span class="kw">mean</span>(data<span class="op">$</span>NumOfProducts), <span class="kw">mean</span>(data<span class="op">$</span>EstimatedSalary))</span>
+<span id="cb1-464"><a href="#cb1-464"></a>meanValues &lt;-<span class="st"> </span><span class="kw">round</span>(meanValues, <span class="dv">2</span>)</span>
+<span id="cb1-465"><a href="#cb1-465"></a></span>
+<span id="cb1-466"><a href="#cb1-466"></a><span class="co">#max values</span></span>
+<span id="cb1-467"><a href="#cb1-467"></a>maxValues&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">max</span>(data<span class="op">$</span>CreditScore),<span class="kw">max</span>(data<span class="op">$</span>Age),</span>
+<span id="cb1-468"><a href="#cb1-468"></a>              <span class="kw">max</span>(data<span class="op">$</span>Tenure), <span class="kw">max</span>(data<span class="op">$</span>Balance),</span>
+<span id="cb1-469"><a href="#cb1-469"></a>             <span class="kw">max</span>(data<span class="op">$</span>NumOfProducts), <span class="kw">max</span>(data<span class="op">$</span>EstimatedSalary))</span>
+<span id="cb1-470"><a href="#cb1-470"></a>maxValues &lt;-<span class="st"> </span><span class="kw">round</span>(maxValues, <span class="dv">2</span>)</span>
+<span id="cb1-471"><a href="#cb1-471"></a></span>
+<span id="cb1-472"><a href="#cb1-472"></a><span class="co">#min values</span></span>
+<span id="cb1-473"><a href="#cb1-473"></a>minValues&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">min</span>(data<span class="op">$</span>CreditScore),<span class="kw">min</span>(data<span class="op">$</span>Age),</span>
+<span id="cb1-474"><a href="#cb1-474"></a>              <span class="kw">min</span>(data<span class="op">$</span>Tenure), <span class="kw">min</span>(data<span class="op">$</span>Balance),</span>
+<span id="cb1-475"><a href="#cb1-475"></a>             <span class="kw">min</span>(data<span class="op">$</span>NumOfProducts), <span class="kw">min</span>(data<span class="op">$</span>EstimatedSalary))</span>
+<span id="cb1-476"><a href="#cb1-476"></a>minValues &lt;-<span class="st"> </span><span class="kw">round</span>(minValues, <span class="dv">2</span>)</span>
+<span id="cb1-477"><a href="#cb1-477"></a></span>
+<span id="cb1-478"><a href="#cb1-478"></a><span class="co">#sd values</span></span>
+<span id="cb1-479"><a href="#cb1-479"></a>sdValues&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">sd</span>(data<span class="op">$</span>CreditScore),<span class="kw">sd</span>(data<span class="op">$</span>Age),</span>
+<span id="cb1-480"><a href="#cb1-480"></a>             <span class="kw">sd</span>(data<span class="op">$</span>Tenure), <span class="kw">sd</span>(data<span class="op">$</span>Balance),</span>
+<span id="cb1-481"><a href="#cb1-481"></a>             <span class="kw">sd</span>(data<span class="op">$</span>NumOfProducts), <span class="kw">sd</span>(data<span class="op">$</span>EstimatedSalary))</span>
+<span id="cb1-482"><a href="#cb1-482"></a>sdValues &lt;-<span class="st"> </span><span class="kw">round</span>(sdValues, <span class="dv">2</span>)</span>
+<span id="cb1-483"><a href="#cb1-483"></a></span>
+<span id="cb1-484"><a href="#cb1-484"></a></span>
+<span id="cb1-485"><a href="#cb1-485"></a>statsTable &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">Variables =</span> <span class="kw">c</span>(<span class="st">&quot;Credit Score&quot;</span>, <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb1-486"><a href="#cb1-486"></a>                                        <span class="st">&quot;Tenure&quot;</span>, <span class="st">&quot;Balance&quot;</span>,</span>
+<span id="cb1-487"><a href="#cb1-487"></a>                                        <span class="st">&quot;No. of Products&quot;</span>, <span class="st">&quot;Estimated Salary&quot;</span>),</span>
+<span id="cb1-488"><a href="#cb1-488"></a>                        <span class="dt">Mean =</span> meanValues,</span>
+<span id="cb1-489"><a href="#cb1-489"></a>                        <span class="dt">Max =</span> maxValues,</span>
+<span id="cb1-490"><a href="#cb1-490"></a>                        <span class="dt">Min =</span> minValues,</span>
+<span id="cb1-491"><a href="#cb1-491"></a>                        <span class="dt">StandardDeviation =</span> sdValues)</span>
+<span id="cb1-492"><a href="#cb1-492"></a></span>
+<span id="cb1-493"><a href="#cb1-493"></a></span>
+<span id="cb1-494"><a href="#cb1-494"></a>statsTable <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kbl</span>(<span class="dt">caption =</span> <span class="st">&quot;Summary Statistics&quot;</span>, <span class="dt">booktabs =</span> T) <span class="op">%&gt;%</span></span>
+<span id="cb1-495"><a href="#cb1-495"></a><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hold_position&quot;</span>))</span>
+<span id="cb1-496"><a href="#cb1-496"></a></span>
+<span id="cb1-497"><a href="#cb1-497"></a></span>
+<span id="cb1-498"><a href="#cb1-498"></a></span>
+<span id="cb1-499"><a href="#cb1-499"></a><span class="co">#figure 1: rfe plots</span></span>
+<span id="cb1-500"><a href="#cb1-500"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</span>
+<span id="cb1-501"><a href="#cb1-501"></a></span>
+<span id="cb1-502"><a href="#cb1-502"></a><span class="co"># plot the results</span></span>
+<span id="cb1-503"><a href="#cb1-503"></a><span class="kw">plot</span>(results1, <span class="dt">type=</span><span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;o&quot;</span>))</span>
+<span id="cb1-504"><a href="#cb1-504"></a><span class="kw">plot</span>(results2, <span class="dt">type=</span><span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;o&quot;</span>))</span>
+<span id="cb1-505"><a href="#cb1-505"></a><span class="kw">plot</span>(results3, <span class="dt">type=</span><span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;o&quot;</span>))</span>
+<span id="cb1-506"><a href="#cb1-506"></a><span class="kw">plot</span>(results4, <span class="dt">type=</span><span class="kw">c</span>(<span class="st">&quot;g&quot;</span>, <span class="st">&quot;o&quot;</span>))</span>
+<span id="cb1-507"><a href="#cb1-507"></a></span>
+<span id="cb1-508"><a href="#cb1-508"></a></span>
+<span id="cb1-509"><a href="#cb1-509"></a><span class="co">#figure 2: variable importance plot</span></span>
+<span id="cb1-510"><a href="#cb1-510"></a><span class="kw">plot</span>(<span class="kw">varImp</span>(fit.gbm.initial, <span class="dt">scale =</span> <span class="ot">FALSE</span>), <span class="dt">top =</span> <span class="dv">9</span>)</span>
+<span id="cb1-511"><a href="#cb1-511"></a></span>
+<span id="cb1-512"><a href="#cb1-512"></a></span>
+<span id="cb1-513"><a href="#cb1-513"></a><span class="co">#figure 3: model comparison</span></span>
+<span id="cb1-514"><a href="#cb1-514"></a><span class="kw">dotplot</span>(modelresults)</span>
+<span id="cb1-515"><a href="#cb1-515"></a></span>
+<span id="cb1-516"><a href="#cb1-516"></a><span class="co">#figure 4: subsample comparison</span></span>
+<span id="cb1-517"><a href="#cb1-517"></a><span class="kw">dotplot</span>(subsampleresults)</span>
+<span id="cb1-518"><a href="#cb1-518"></a></span>
+<span id="cb1-519"><a href="#cb1-519"></a><span class="co">#figure 5: base model roc iterations</span></span>
+<span id="cb1-520"><a href="#cb1-520"></a><span class="kw">plot</span>(fit.gbm.tune, <span class="dt">plotType =</span> <span class="st">&quot;level&quot;</span>, <span class="dt">scales =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="kw">list</span>(<span class="dt">rot =</span> <span class="dv">90</span>)))</span>
+<span id="cb1-521"><a href="#cb1-521"></a></span>
+<span id="cb1-522"><a href="#cb1-522"></a><span class="co">#figure 6: fancy confusion matrix</span></span>
+<span id="cb1-523"><a href="#cb1-523"></a><span class="kw">draw_confusion_matrix</span>(cm)</span>
+<span id="cb1-524"><a href="#cb1-524"></a></span>
+<span id="cb1-525"><a href="#cb1-525"></a><span class="co">#figure 7: final var imp plot</span></span>
+<span id="cb1-526"><a href="#cb1-526"></a><span class="kw">plot</span>(<span class="kw">varImp</span>(fit.gbm, <span class="dt">scale =</span> <span class="ot">FALSE</span>), <span class="dt">top =</span> <span class="dv">13</span>)</span></code></pre></div>
+</div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Max Kuhn (27/03/2019) 3.2 Zero- and Near Zero-Variance Predictors, Available at: <a href="https://topepo.github.io/caret/pre-processing.html" class="uri">https://topepo.github.io/caret/pre-processing.html</a> (Accessed: 17/04/2021).</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>Max Kuhn (27/03/2019) 4.1 Simple Splitting Based on the Outcome, Available at: <a href="https://topepo.github.io/caret/pre-processing.html" class="uri">https://topepo.github.io/caret/pre-processing.html</a> (Accessed: 17/04/2021).</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: decimal">
+<li>Max Kuhn (27/03/2019) 20 Recursive Feature Elimination, Available at: <a href="https://topepo.github.io/caret/recursive-feature-elimination.html" class="uri">https://topepo.github.io/caret/recursive-feature-elimination.html</a> (Accessed: 19/04/2021).</li>
+</ol></li>
+<li>Ambroise, C. and McLachlan, G.J., 2002. Selection bias in gene extraction on the basis of microarray gene-expression data. Proceedings of the national academy of sciences, 99(10), pp.6562-6566.</li>
+<li>Menardi, G. and Torelli, N., (2014) Training and assessing classification rules with imbalanced data. Data mining and knowledge discovery, 28(1), pp.92-122.</li>
+<li>Ridgeway, G., 2007. Generalized Boosted Models: A guide to the gbm package. Update, 1(1), p.2007.</li>
+<li>Bolton, R.N., 1998. A dynamic model of the duration of the customer’s relationship with a continuous service provider: The role of satisfaction. Marketing science, 17(1), pp.45-65.</li>
+<li>Neslin, S.A., Gupta, S., Kamakura, W., Lu, J. and Mason, C.H., 2006. Defection detection: Measuring and understanding the predictive accuracy of customer churn models. Journal of marketing research, 43(2), pp.204-211.</li>
+<li>Anil Kumar, D. and Ravi, V., 2008. Predicting credit card customer churn in banks using data mining. International Journal of Data Analysis Techniques and Strategies, 1(1), pp.4-28.</li>
+<li>Freund, Y., Schapire, R. and Abe, N., 1999. A short introduction to boosting. Journal-Japanese Society For Artificial Intelligence, 14(771-780), p.1612.</li>
+<li>Lu, N., Lin, H., Lu, J. and Zhang, G., 2012. A customer churn prediction model in telecom industry using boosting. IEEE Transactions on Industrial Informatics, 10(2), pp.1659-1665.</li>
+<li>Agrawal, S., Das, A., Gaikwad, A. and Dhage, S., 2018, July. Customer churn prediction modelling based on behavioural patterns analysis using deep learning. In 2018 International conference on smart computing and electronic enterprise (ICSCEE) (pp. 1-6). IEEE.</li>
+<li>Fawcett, T., 2006. An introduction to ROC analysis. Pattern recognition letters, 27(8), pp.861-874.</li>
+<li>Vafeiadis, T., Diamantaras, K.I., Sarigiannidis, G. and Chatzisavvas, K.C., 2015. A comparison of machine learning techniques for customer churn prediction. Simulation Modelling Practice and Theory, 55, pp.1-9.</li>
+<li>Viera, A.J. and Garrett, J.M., 2005. Understanding interobserver agreement: the kappa statistic. Fam med, 37(5), pp.360-363.</li>
+<li>Keramati, A., Ghaneei, H. and Mirmohammadi, S.M., 2016. Developing a prediction model for customer churn from electronic banking services using data mining. Financial Innovation, 2(1), pp.1-13.</li>
+<li>Galar, M., Fernandez, A., Barrenechea, E., Bustince, H. and Herrera, F., 2011. A review on ensembles for the class imbalance problem: bagging-, boosting-, and hybrid-based approaches. IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews), 42(4), pp.463-484.</li>
+<li>Gelman, A., Hill, J., &amp; Vehtari, A. (2020). Data and measurement. In Regression and Other Stories (Analytical Methods for Social Research, pp. 21-34). Cambridge: Cambridge University Press</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
