@@ -170,4 +170,4 @@ Due to Tableau public's lack of ability to connect to databases in sql, I export
 
 
 <iframe src="https://public.tableau.com/views/CovidDashboardProject_16296348960110/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link"
- width="1000" height="800"></iframe>
+ width="1100" height="955"></iframe>
