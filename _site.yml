@@ -11,11 +11,14 @@ navbar:
       icon: fa-address-card
     - text: "Projects"
       menu:
-      - text: "Insurance Analysis"
+      - text: "Insurance Analysis SQL/R"
         href: insurance.html
         icon: fa-book-open
-      - text: "Churn Analysis"
+      - text: "Churn Analysis R"
         href: churn.html
+        icon: fa-book-open
+      - text: "Covid Statistics SQL/Tableau"
+        href: CovidProject.html
         icon: fa-book-open
   right:
     - href: https://github.com/Petermcc042
